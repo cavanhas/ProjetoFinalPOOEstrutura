@@ -6,7 +6,7 @@ import java.util.Date;
 
 import dao.PacienteDao;
 import modelo.Paciente;
-import vis„o.TelaPrincipal;
+import vis√£o.TelaPrincipal;
 
 public class PacienteControle implements ActionListener{
 	private Paciente pa;
@@ -49,5 +49,3 @@ public class PacienteControle implements ActionListener{
 	}
 	
 }
-
-//gremioooooo
