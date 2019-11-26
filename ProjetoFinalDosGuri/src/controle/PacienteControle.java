@@ -49,5 +49,3 @@ public class PacienteControle implements ActionListener{
 	}
 	
 }
-
-//GREMIO FBPA
