@@ -11,7 +11,7 @@ public class App {
 		Paciente p = new Paciente();
 		PacienteControle pcon = new PacienteControle(p, t);
 		
-		// Comentário teste
+		// Comentário teste de novo e mais uma vez
 		
 	} 
 }
