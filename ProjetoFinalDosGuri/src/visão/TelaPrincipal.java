@@ -14,9 +14,11 @@ public class TelaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JMenuItem mntmCadastrarNovoPaciente;
+	private JMenuItem mntmAtendimentoTeste;
 	private TelaCadastro tcad;
 
 	public TelaPrincipal() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
@@ -30,12 +32,17 @@ public class TelaPrincipal extends JFrame {
 		mntmCadastrarNovoPaciente.setActionCommand("menuCad");
 		mnFile.add(mntmCadastrarNovoPaciente);
 		
+		mntmAtendimentoTeste = new JMenuItem("Atendimento Teste");
+		mntmAtendimentoTeste.setActionCommand("menuAtendimento");
+		mnFile.add(mntmAtendimentoTeste);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		tcad = new TelaCadastro();
+		
 	}
 
 	public JMenuItem getMntmCadastrarNovoPaciente() {
@@ -53,6 +60,13 @@ public class TelaPrincipal extends JFrame {
 	public void setTcad(TelaCadastro tcad) {
 		this.tcad = tcad;
 	}
-	
+
+	public JMenuItem getMntmAtendimentoTeste() {
+		return mntmAtendimentoTeste;
+	}
+
+	public void setMntmAtendimentoTeste(JMenuItem mntmAtendimentoTeste) {
+		this.mntmAtendimentoTeste = mntmAtendimentoTeste;
+	}
 	
 }

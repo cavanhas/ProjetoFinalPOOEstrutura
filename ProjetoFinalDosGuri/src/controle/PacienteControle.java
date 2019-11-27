@@ -5,10 +5,12 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 
 import dao.PacienteDao;
+import modelo.Lista;
 import modelo.Paciente;
 import visão.TelaPrincipal;
 
 public class PacienteControle implements ActionListener {
+	
 	private Paciente pa;
 	private TelaPrincipal tp;
 	private PacienteDao dao;
@@ -25,11 +27,13 @@ public class PacienteControle implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		if (e.getActionCommand().equals("menuCad")) {
 			this.tp.setContentPane(this.tp.getTcad());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
+		
 		if (e.getActionCommand().equals("Cadastrar")) {
 			String nomeaux = this.tp.getTcad().getTextFieldnome().getText();
 			String cpfaux = this.tp.getTcad().getTextFieldcpf().getText();
@@ -40,10 +44,13 @@ public class PacienteControle implements ActionListener {
 			dao.cadastrarPaciente(p);
 
 			this.tp.getTcad().limpar();
+			
 		}
+		
 		if (e.getActionCommand().equals("Limpar")) {
 			this.tp.getTcad().limpar();
 		}
+		
 	}
 }
 //TESTE NOVAMENTE

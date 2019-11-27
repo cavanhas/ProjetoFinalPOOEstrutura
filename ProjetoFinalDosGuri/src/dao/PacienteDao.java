@@ -13,13 +13,13 @@ public class PacienteDao {
 		
 	}
 	
-	public boolean cadastrarPaciente(Paciente pac){
+	public boolean cadastrarPaciente(Paciente pac) {
 		
 		FileWriter fw = null;
 		BufferedWriter bw = null;
 		
 		try {
-			fw = new FileWriter("cadsatro.txt",true);
+			fw = new FileWriter("cadastro.txt",true);
 			bw = new BufferedWriter(fw);
 			
 			bw.write(pac.getNome()+"#"+pac.getCpf()+"#"+pac.getDataNasc());
@@ -40,9 +40,11 @@ public class PacienteDao {
 			}
 		}
 		
-		Lista listaCad = new Lista();
-		
-		listaCad.addPaciente(pac);
+//		Lista listaCad = new Lista();
+//		
+//		listaCad.addPaciente(pac);
+//		
+//		listaCad.exibirLista();
 		
 		return true;
 	}
