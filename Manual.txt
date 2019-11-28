@@ -1,0 +1,33 @@
+menu bar: todas as telas. Sair. Início. Relatórios. Pacientes - pacientes cadastrados
+pacientes na fila de atendimento(todas as filas com as prioridades)
+
+janela de cadastrar cadastrar paciente - por em ordem alfabética na lista
+
+janela de consultar paciente - procura o paciente, atribui senha e troca de tela
+para iniciar o atendimento. Paciente vai pra fila de atendimento e troca pra tela
+de triagem - setContentPane(tela de traigem)
+
+o que fazer:	Busca o paciente pelo cpf
+		atribui senha (aleatória, ou referente às linhas do cadastro.txt)
+		botao de chama triagem
+		botao que vai pro início
+
+tela da triagem - separa em tres filas. Faz o pop da fila de atendimento e faz o push
+em outra file (1, 2, 3, 4 ou 5).
+
+o que fazer:	
+
+tela de chamar paciente pra conulta - método que chama os paciente de acordo
+com a fila de prioridade. remove da lista e da fila e vai pra lista de encerrados 
+com data e hora de saída
+
+classe atendimento:
+atributos: paciente, horário, data de chegada, senha
+metodos: get e set,
+
+tela de consulta
+
+
+
+
+
