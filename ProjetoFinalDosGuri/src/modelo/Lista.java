@@ -73,8 +73,9 @@ public class Lista {
 	public Paciente bucarPaciente(String cpf) {
 		
 		No aux;
+		aux = primeiro;
 		
-		for(aux = this.primeiro; aux != null; aux = aux.getProximo()) {
+		while(aux != null) {
 			
 			if(aux.getPac().getCpf() == cpf) {
 				
@@ -82,6 +83,7 @@ public class Lista {
 				
 			}
 			
+			aux = aux.getProximo();
 		}
 		
 		return null;
@@ -92,7 +94,6 @@ public class Lista {
 		
 	}
 	
-	// Exibição da lista (para testes)
 	public void exibirLista() {
 		
 		No aux;
@@ -101,6 +102,10 @@ public class Lista {
 			System.out.println(aux.getPac().getNome());
 		}
 		
+	}
+	
+	public void limpar() {
+		primeiro = null;
 	}
 
 }

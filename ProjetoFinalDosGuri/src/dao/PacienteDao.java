@@ -13,6 +13,8 @@ public class PacienteDao {
 		
 	}
 	
+	Lista listaCad = new Lista();
+	
 	public boolean cadastrarPaciente(Paciente pac) {
 		
 		FileWriter fw = null;
@@ -40,13 +42,22 @@ public class PacienteDao {
 			}
 		}
 		
-//		Lista listaCad = new Lista();
-//		
-//		listaCad.addPaciente(pac);
-//		
-//		listaCad.exibirLista();
+		listaCad.addPaciente(pac);
+		
+		listaCad.exibirLista();
 		
 		return true;
+	}
+	
+	public Paciente consultarPaciente(String cpf) {
+		Paciente p = listaCad.bucarPaciente(cpf);
+		
+		if(p == null) {
+			System.out.println("Paciente NAO ENCONTRADO");
+			return p;
+		}
+		else
+			return null;
 	}
 	
 }

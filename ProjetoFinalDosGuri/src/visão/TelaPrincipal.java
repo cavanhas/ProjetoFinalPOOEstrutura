@@ -16,6 +16,8 @@ public class TelaPrincipal extends JFrame {
 	private JMenuItem mntmCadastrarNovoPaciente;
 	private JMenuItem mntmAtendimentoTeste;
 	private TelaCadastro tcad;
+	private TelaConsulta tcon;
+	private JMenuItem mntmProcurarUmPaciente;
 
 	public TelaPrincipal() {
 		
@@ -32,6 +34,10 @@ public class TelaPrincipal extends JFrame {
 		mntmCadastrarNovoPaciente.setActionCommand("menuCad");
 		mnFile.add(mntmCadastrarNovoPaciente);
 		
+		mntmProcurarUmPaciente = new JMenuItem("Procurar um paciente");
+		getMntmProcurarUmPaciente().setActionCommand("menuCon");
+		mnFile.add(mntmProcurarUmPaciente);
+		
 		mntmAtendimentoTeste = new JMenuItem("Atendimento Teste");
 		mntmAtendimentoTeste.setActionCommand("menuAtendimento");
 		mnFile.add(mntmAtendimentoTeste);
@@ -42,6 +48,7 @@ public class TelaPrincipal extends JFrame {
 		setContentPane(contentPane);
 		
 		tcad = new TelaCadastro();
+		tcon = new TelaConsulta();
 		
 	}
 
@@ -60,6 +67,15 @@ public class TelaPrincipal extends JFrame {
 	public void setTcad(TelaCadastro tcad) {
 		this.tcad = tcad;
 	}
+	
+
+	public TelaConsulta getTcon() {
+		return tcon;
+	}
+
+	public void setTcon(TelaConsulta tcon) {
+		this.tcon = tcon;
+	}
 
 	public JMenuItem getMntmAtendimentoTeste() {
 		return mntmAtendimentoTeste;
@@ -68,5 +84,15 @@ public class TelaPrincipal extends JFrame {
 	public void setMntmAtendimentoTeste(JMenuItem mntmAtendimentoTeste) {
 		this.mntmAtendimentoTeste = mntmAtendimentoTeste;
 	}
+
+	public JMenuItem getMntmProcurarUmPaciente() {
+		return mntmProcurarUmPaciente;
+	}
+
+	public void setMntmProcurarUmPaciente(JMenuItem mntmProcurarUmPaciente) {
+		this.mntmProcurarUmPaciente = mntmProcurarUmPaciente;
+	}
+	
+	
 	
 }

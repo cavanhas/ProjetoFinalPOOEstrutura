@@ -9,12 +9,14 @@ import javax.swing.JButton;
 
 public class TelaConsulta extends JPanel {
 	private JTextField textFieldCpfPaciente;
+	private JButton btnConsultar;
+	private JLabel lblSenha;
 
 	/**
 	 * Create the panel.
 	 */
 	public TelaConsulta() {
-		setLayout(new MigLayout("", "[][][136.00,grow][][][][][]", "[][][][][][][][]"));
+		setLayout(new MigLayout("", "[][][136.00,grow][][][][][]", "[][][][][][26.00][][]"));
 		
 		JLabel lblConsulta = new JLabel("Consulta");
 		lblConsulta.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -27,9 +29,27 @@ public class TelaConsulta extends JPanel {
 		add(textFieldCpfPaciente, "cell 2 2,growx");
 		textFieldCpfPaciente.setColumns(10);
 		
-		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar = new JButton("Consultar");
 		add(btnConsultar, "cell 3 2");
 
 	}
+
+	public JTextField getTextFieldCpfPaciente() {
+		return textFieldCpfPaciente;
+	}
+
+	public void setTextFieldCpfPaciente(JTextField textFieldCpfPaciente) {
+		this.textFieldCpfPaciente = textFieldCpfPaciente;
+	}
+
+	public JButton getBtnConsultar() {
+		return btnConsultar;
+	}
+
+	public void setBtnConsultar(JButton btnConsultar) {
+		this.btnConsultar = btnConsultar;
+	}
+	
+	
 
 }

@@ -19,8 +19,10 @@ public class PacienteControle implements ActionListener {
 		this.pa = pa;
 		this.tp = tp;
 		this.tp.getMntmCadastrarNovoPaciente().addActionListener(this);
+		this.tp.getMntmProcurarUmPaciente().addActionListener(this);
 		this.tp.getTcad().getBtnCadastrar().addActionListener(this);
 		this.tp.getTcad().getBtnLimpar().addActionListener(this);
+		this.tp.getTcon().getBtnConsultar().addActionListener(this);
 		dao = new PacienteDao();
 	}
 
@@ -30,6 +32,12 @@ public class PacienteControle implements ActionListener {
 		
 		if (e.getActionCommand().equals("menuCad")) {
 			this.tp.setContentPane(this.tp.getTcad());
+			this.tp.revalidate();
+			this.tp.repaint();
+		}
+		
+		if(e.getActionCommand().equals("menuCon")) {
+			this.tp.setContentPane(this.tp.getTcon());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
@@ -49,6 +57,12 @@ public class PacienteControle implements ActionListener {
 		
 		if (e.getActionCommand().equals("Limpar")) {
 			this.tp.getTcad().limpar();
+		}
+		
+		if(e.getActionCommand().equals("Consultar")) {
+			String cpf = this.tp.getTcon().getTextFieldCpfPaciente().getText();
+			
+			dao.consultarPaciente(cpf);
 		}
 		
 	}
