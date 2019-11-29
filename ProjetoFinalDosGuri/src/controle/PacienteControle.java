@@ -67,8 +67,11 @@ public class PacienteControle implements ActionListener {
 			
 			if(p != null) {
 				this.tp.getTcon().mostrarSenha();
+				this.tp.getTcon().getLabelStatus().setText("Paciente encontrado");
 			}
-		
+			else {
+				this.tp.getTcon().getLabelStatus().setText("Paciente não encontrado");
+			}		
 		}
 		
 		if(e.getActionCommand().equals("Encaminhar para Atendimento")) {

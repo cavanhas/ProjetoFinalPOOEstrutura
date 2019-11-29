@@ -18,10 +18,11 @@ public class TelaConsulta extends JPanel {
 	private JLabel lblSenha;
 	private JTextField textFieldSenha;
 	private JButton btnEncaminharParaAtendimento;
+	private JLabel labelStatus;
 
 	
 	public TelaConsulta() {
-		setLayout(new MigLayout("", "[][][119.00,grow][][][][][]", "[][][][][][51.00][][]"));
+		setLayout(new MigLayout("", "[][][119.00,grow][][][][][]", "[][][][][][20.00][][]"));
 		
 		JLabel lblConsulta = new JLabel("Consulta");
 		lblConsulta.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -46,6 +47,9 @@ public class TelaConsulta extends JPanel {
 		
 		btnEncaminharParaAtendimento = new JButton("Encaminhar para Atendimento");
 		add(btnEncaminharParaAtendimento, "cell 3 4");
+		
+		labelStatus = new JLabel("");
+		add(labelStatus, "cell 2 5");
 
 	}
 	
@@ -84,6 +88,14 @@ public class TelaConsulta extends JPanel {
 
 	public void setBtnEncaminharParaAtendimento(JButton btnEncaminharParaAtendimento) {
 		this.btnEncaminharParaAtendimento = btnEncaminharParaAtendimento;
+	}
+
+	public JLabel getLabelStatus() {
+		return labelStatus;
+	}
+
+	public void setLabelStatus(JLabel labelStatus) {
+		this.labelStatus = labelStatus;
 	}
 	
 	
