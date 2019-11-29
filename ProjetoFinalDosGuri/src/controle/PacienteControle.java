@@ -25,6 +25,7 @@ public class PacienteControle implements ActionListener {
 		this.tp.getTcad().getBtnLimpar().addActionListener(this);
 		this.tp.getTcon().getBtnConsultar().addActionListener(this);
 		this.tp.getTcon().getBtnEncaminharParaAtendimento().addActionListener(this);
+		this.tp.getMntmSair().addActionListener(this);
 		dao = new PacienteDao();
 	}
 
