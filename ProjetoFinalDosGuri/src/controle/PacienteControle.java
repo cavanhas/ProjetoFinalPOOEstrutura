@@ -23,6 +23,7 @@ public class PacienteControle implements ActionListener {
 		this.tp.getTcad().getBtnCadastrar().addActionListener(this);
 		this.tp.getTcad().getBtnLimpar().addActionListener(this);
 		this.tp.getTcon().getBtnConsultar().addActionListener(this);
+		this.tp.getTcon().getBtnEncaminharParaAtendimento().addActionListener(this);
 		dao = new PacienteDao();
 	}
 
@@ -62,9 +63,17 @@ public class PacienteControle implements ActionListener {
 		if(e.getActionCommand().equals("Consultar")) {
 			String cpf = this.tp.getTcon().getTextFieldCpfPaciente().getText();
 			
-			dao.consultarPaciente(cpf);
+			Paciente p = dao.consultarPaciente(cpf);
+			
+			if(p != null) {
+				this.tp.getTcon().mostrarSenha();
+			}
+		
 		}
 		
+		if(e.getActionCommand().equals("Encaminhar para Atendimento")) {
+			
+		}	
 	}
+	
 }
-//TESTE NOVAMENTE

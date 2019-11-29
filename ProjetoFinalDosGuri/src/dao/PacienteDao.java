@@ -48,14 +48,14 @@ public class PacienteDao {
 		return true;
 	}
 	
-	public void consultarPaciente(String cpf) {
+	public Paciente consultarPaciente(String cpf) {
 		Paciente p = listaCad.bucarPaciente(cpf);
 		
-		if(p == null) {
-			System.out.println("Paciente NAO ENCONTRADO");
+		if(p != null) {
+			return p;
 		}
 		else {
-			System.out.println("Paciente encontrado");
+			return null;
 		}
 	}
 	

@@ -13,7 +13,6 @@ public class App {
 		t.setVisible(true);
 		Paciente p = new Paciente();
 		PacienteControle pcon = new PacienteControle(p, t);
-		
 	}
 	
 }

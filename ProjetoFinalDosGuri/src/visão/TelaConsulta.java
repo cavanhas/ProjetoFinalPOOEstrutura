@@ -4,17 +4,24 @@ import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.Random;
+
 import javax.swing.JTextField;
+
+import modelo.Paciente;
+
 import javax.swing.JButton;
 
 public class TelaConsulta extends JPanel {
 	private JTextField textFieldCpfPaciente;
 	private JButton btnConsultar;
 	private JLabel lblSenha;
+	private JTextField textFieldSenha;
+	private JButton btnEncaminharParaAtendimento;
 
 	
 	public TelaConsulta() {
-		setLayout(new MigLayout("", "[][][136.00,grow][][][][][]", "[][][][][][26.00][][]"));
+		setLayout(new MigLayout("", "[][][119.00,grow][][][][][]", "[][][][][][51.00][][]"));
 		
 		JLabel lblConsulta = new JLabel("Consulta");
 		lblConsulta.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -29,7 +36,22 @@ public class TelaConsulta extends JPanel {
 		
 		btnConsultar = new JButton("Consultar");
 		add(btnConsultar, "cell 3 2");
+		
+		JLabel lblSenha = new JLabel("Senha:");
+		add(lblSenha, "cell 1 4,alignx center");
+		
+		textFieldSenha = new JTextField();
+		add(textFieldSenha, "cell 2 4,growx");
+		textFieldSenha.setColumns(10);
+		
+		btnEncaminharParaAtendimento = new JButton("Encaminhar para Atendimento");
+		add(btnEncaminharParaAtendimento, "cell 3 4");
 
+	}
+	
+	public void mostrarSenha() {
+		Random rand  = new Random();
+		getTextFieldSenha().setText(Integer.toString(rand.nextInt()));
 	}
 
 	public JTextField getTextFieldCpfPaciente() {
@@ -47,7 +69,23 @@ public class TelaConsulta extends JPanel {
 	public void setBtnConsultar(JButton btnConsultar) {
 		this.btnConsultar = btnConsultar;
 	}
-	
-	
 
+	public JTextField getTextFieldSenha() {
+		return textFieldSenha;
+	}
+
+	public void setTextFieldSenha(JTextField textFieldSenha) {
+		this.textFieldSenha = textFieldSenha;
+	}
+
+	public JButton getBtnEncaminharParaAtendimento() {
+		return btnEncaminharParaAtendimento;
+	}
+
+	public void setBtnEncaminharParaAtendimento(JButton btnEncaminharParaAtendimento) {
+		this.btnEncaminharParaAtendimento = btnEncaminharParaAtendimento;
+	}
+	
+	
+	
 }
