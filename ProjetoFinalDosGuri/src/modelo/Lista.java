@@ -77,7 +77,7 @@ public class Lista {
 		
 		while(aux != null) {
 			
-			if(aux.getPac().getCpf() == cpf) {
+			if(aux.getPac().getCpf().equals(cpf)) {
 				
 				return aux.getPac();
 				

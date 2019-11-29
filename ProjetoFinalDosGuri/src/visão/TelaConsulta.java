@@ -12,9 +12,7 @@ public class TelaConsulta extends JPanel {
 	private JButton btnConsultar;
 	private JLabel lblSenha;
 
-	/**
-	 * Create the panel.
-	 */
+	
 	public TelaConsulta() {
 		setLayout(new MigLayout("", "[][][136.00,grow][][][][][]", "[][][][][][26.00][][]"));
 		
