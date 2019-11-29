@@ -63,6 +63,10 @@ public class PacienteControle implements ActionListener {
 			
 		}
 		
+		if(e.getActionCommand().equals("menuSair")){
+			System.exit(0);
+		}
+		
 		if (e.getActionCommand().equals("Limpar")) {
 			this.tp.getTcad().limpar();
 		}

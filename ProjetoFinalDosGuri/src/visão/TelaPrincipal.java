@@ -19,6 +19,7 @@ public class TelaPrincipal extends JFrame {
 	private TelaAtendimento tatend;
 	private JMenuItem mntmProcurarUmPaciente;
 	private JMenuItem mntmAtendimento;
+	private JMenuItem mntmSair;
 
 	public TelaPrincipal() {
 		
@@ -42,6 +43,10 @@ public class TelaPrincipal extends JFrame {
 		mntmAtendimento = new JMenuItem("Atendimento");
 		mntmAtendimento.setActionCommand("menuAtend");
 		mnFile.add(mntmAtendimento);
+		
+		mntmSair = new JMenuItem("Sair");
+		mntmSair.setActionCommand("menuSair");
+		mnFile.add(mntmSair);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -101,6 +106,14 @@ public class TelaPrincipal extends JFrame {
 
 	public void setMntmAtendimento(JMenuItem mntmAtendimento) {
 		this.mntmAtendimento = mntmAtendimento;
+	}
+
+	public JMenuItem getMntmSair() {
+		return mntmSair;
+	}
+
+	public void setMntmSair(JMenuItem mntmSair) {
+		this.mntmSair = mntmSair;
 	}
 	
 	
