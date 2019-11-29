@@ -14,10 +14,11 @@ public class TelaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JMenuItem mntmCadastrarNovoPaciente;
-	private JMenuItem mntmAtendimentoTeste;
 	private TelaCadastro tcad;
 	private TelaConsulta tcon;
+	private TelaAtendimento tatend;
 	private JMenuItem mntmProcurarUmPaciente;
+	private JMenuItem mntmAtendimento;
 
 	public TelaPrincipal() {
 		
@@ -38,9 +39,9 @@ public class TelaPrincipal extends JFrame {
 		getMntmProcurarUmPaciente().setActionCommand("menuCon");
 		mnFile.add(mntmProcurarUmPaciente);
 		
-		mntmAtendimentoTeste = new JMenuItem("Atendimento Teste");
-		mntmAtendimentoTeste.setActionCommand("menuAtendimento");
-		mnFile.add(mntmAtendimentoTeste);
+		mntmAtendimento = new JMenuItem("Atendimento");
+		mntmAtendimento.setActionCommand("menuAtend");
+		mnFile.add(mntmAtendimento);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -49,6 +50,7 @@ public class TelaPrincipal extends JFrame {
 		
 		tcad = new TelaCadastro();
 		tcon = new TelaConsulta();
+		tatend = new TelaAtendimento();
 		
 	}
 
@@ -71,20 +73,12 @@ public class TelaPrincipal extends JFrame {
 
 	public TelaConsulta getTcon() {
 		return tcon;
-	}
+	}	
 
 	public void setTcon(TelaConsulta tcon) {
 		this.tcon = tcon;
 	}
-
-	public JMenuItem getMntmAtendimentoTeste() {
-		return mntmAtendimentoTeste;
-	}
-
-	public void setMntmAtendimentoTeste(JMenuItem mntmAtendimentoTeste) {
-		this.mntmAtendimentoTeste = mntmAtendimentoTeste;
-	}
-
+	
 	public JMenuItem getMntmProcurarUmPaciente() {
 		return mntmProcurarUmPaciente;
 	}
@@ -92,7 +86,22 @@ public class TelaPrincipal extends JFrame {
 	public void setMntmProcurarUmPaciente(JMenuItem mntmProcurarUmPaciente) {
 		this.mntmProcurarUmPaciente = mntmProcurarUmPaciente;
 	}
-	
+
+	public TelaAtendimento getTatend() {
+		return tatend;
+	}
+
+	public void setTatend(TelaAtendimento tatend) {
+		this.tatend = tatend;
+	}
+
+	public JMenuItem getMntmAtendimento() {
+		return mntmAtendimento;
+	}
+
+	public void setMntmAtendimento(JMenuItem mntmAtendimento) {
+		this.mntmAtendimento = mntmAtendimento;
+	}
 	
 	
 }

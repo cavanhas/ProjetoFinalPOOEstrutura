@@ -20,6 +20,7 @@ public class PacienteControle implements ActionListener {
 		this.tp = tp;
 		this.tp.getMntmCadastrarNovoPaciente().addActionListener(this);
 		this.tp.getMntmProcurarUmPaciente().addActionListener(this);
+		this.tp.getMntmAtendimento().addActionListener(this);
 		this.tp.getTcad().getBtnCadastrar().addActionListener(this);
 		this.tp.getTcad().getBtnLimpar().addActionListener(this);
 		this.tp.getTcon().getBtnConsultar().addActionListener(this);
@@ -39,6 +40,12 @@ public class PacienteControle implements ActionListener {
 		
 		if(e.getActionCommand().equals("menuCon")) {
 			this.tp.setContentPane(this.tp.getTcon());
+			this.tp.revalidate();
+			this.tp.repaint();
+		}
+		
+		if(e.getActionCommand().equals("menuAtend")) {
+			this.tp.setContentPane(this.tp.getTatend());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
