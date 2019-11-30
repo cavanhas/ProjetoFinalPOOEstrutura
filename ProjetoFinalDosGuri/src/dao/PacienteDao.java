@@ -155,8 +155,6 @@ public class PacienteDao {
 			}
 		}
 		else {
-			Atendimento at = filaP1.exibirFila();
-			return at;
 		}
 		
 		return null;
