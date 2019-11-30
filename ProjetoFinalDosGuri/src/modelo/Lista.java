@@ -2,7 +2,7 @@ package modelo;
 
 public class Lista {
 	
-	private No primeiro;
+	private NoPaciente primeiro;
 	
 	public Lista() {
 		// TODO Auto-generated constructor stub
@@ -21,17 +21,17 @@ public class Lista {
 		
 		if(estaVazia()){
 			
-			No novo = new No();
+			NoPaciente novo = new NoPaciente();
 			novo.setPac(pac);
 			novo.setProximo(this.primeiro);
 			this.primeiro = novo;
 		
 		} else {
 			
-			No novo = new No();
+			NoPaciente novo = new NoPaciente();
 			novo.setPac(pac);
 			
-			No aux = this.primeiro;
+			NoPaciente aux = this.primeiro;
 			
 			while(aux.getProximo() != null){
 				aux = aux.getProximo();
@@ -49,7 +49,7 @@ public class Lista {
 					
 				} else {
 					
-					No aux2 = this.primeiro;
+					NoPaciente aux2 = this.primeiro;
 					
 					while(aux2.getProximo() != aux) {
 						aux2 = aux2.getProximo();
@@ -72,7 +72,7 @@ public class Lista {
 	
 	public Paciente bucarPaciente(String cpf) {
 		
-		No aux;
+		NoPaciente aux;
 		aux = primeiro;
 		
 		while(aux != null) {
@@ -96,7 +96,7 @@ public class Lista {
 	
 	public void exibirLista() {
 		
-		No aux;
+		NoPaciente aux;
 		
 		for(aux = this.primeiro; aux != null; aux = aux.getProximo()) {
 			System.out.println(aux.getPac().getNome());

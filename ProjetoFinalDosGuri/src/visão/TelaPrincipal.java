@@ -103,5 +103,4 @@ public class TelaPrincipal extends JFrame {
 		this.mntmAtendimento = mntmAtendimento;
 	}
 	
-	
 }

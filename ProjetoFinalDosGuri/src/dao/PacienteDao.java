@@ -3,17 +3,24 @@ package dao;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
+import modelo.Atendimento;
+import modelo.Fila;
 import modelo.Lista;
 import modelo.Paciente;
 
 public class PacienteDao {
+	
+	Lista listaCad = new Lista();
+	Fila filaPac = new Fila();
 
 	public PacienteDao() {
 		
 	}
-	
-	Lista listaCad = new Lista();
 	
 	public boolean cadastrarPaciente(Paciente pac) {
 		
@@ -44,7 +51,6 @@ public class PacienteDao {
 		
 		listaCad.addPaciente(pac);
 		
-		
 		return true;
 	}
 	
@@ -57,6 +63,22 @@ public class PacienteDao {
 		else {
 			return null;
 		}
+	}
+	
+	// Colocando os pacientes na fila de atendimento
+	public void filaAtendimento(Atendimento at) {
+		
+		filaPac.enfileira(at);
+		
+		/* TestesS
+		 * 
+		DateFormat horaFormat = DateFormat.getTimeInstance(DateFormat.FULL);
+		DateFormat dataFormat = DateFormat.getDateInstance(DateFormat.FULL);
+		
+		System.out.println("Hora do atendimento: " + horaFormat.format(at.getData()));
+		System.out.println("Data do atendimento: " + dataFormat.format(at.getData()));
+		*/
+		
 	}
 	
 }

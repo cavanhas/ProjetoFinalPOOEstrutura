@@ -2,9 +2,13 @@ package controle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import dao.PacienteDao;
+import modelo.Atendimento;
 import modelo.Lista;
 import modelo.Paciente;
 import visão.TelaPrincipal;
@@ -68,6 +72,7 @@ public class PacienteControle implements ActionListener {
 		}
 		
 		if(e.getActionCommand().equals("Consultar")) {
+			
 			String cpf = this.tp.getTcon().getTextFieldCpfPaciente().getText();
 			
 			Paciente p = dao.consultarPaciente(cpf);
@@ -82,6 +87,22 @@ public class PacienteControle implements ActionListener {
 		}
 		
 		if(e.getActionCommand().equals("Encaminhar para Atendimento")) {
+			
+			String cpf = this.tp.getTcon().getTextFieldCpfPaciente().getText();
+			String senha = this.tp.getTcon().getTextFieldSenha().getText();
+			
+			Paciente p = dao.consultarPaciente(cpf);
+			
+			Date data = new Date();
+			
+			Atendimento at = new Atendimento(p, senha, data);
+			
+			if(p != null) {
+				dao.filaAtendimento(at);
+			}
+			else {
+				this.tp.getTcon().getLabelStatus().setText("Paciente não encontrado");
+			}
 			
 		}	
 	}

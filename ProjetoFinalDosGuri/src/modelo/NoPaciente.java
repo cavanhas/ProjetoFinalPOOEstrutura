@@ -1,19 +1,19 @@
 package modelo;
 
-public class No {
+public class NoPaciente {
 	
-	private No proximo;
+	private NoPaciente proximo;
 	private Paciente pac;
 	
-	public No() {
+	public NoPaciente() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public No getProximo() {
+	public NoPaciente getProximo() {
 		return proximo;
 	}
 
-	public void setProximo(No proximo) {
+	public void setProximo(NoPaciente proximo) {
 		this.proximo = proximo;
 	}
 

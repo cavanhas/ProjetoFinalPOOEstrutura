@@ -1,24 +1,24 @@
 package modelo;
 
-import java.sql.Time;
+import java.text.DateFormat;
 import java.util.Date;
 
 public class Atendimento {
 	
 	private Paciente p;
 	private String senha;
-	private Time hora;
+	//private Date hora;
 	private Date data;
 	
 	public Atendimento() {
 		
 	}
 
-	public Atendimento(Paciente p, String senha, Time hora, Date data) {
+	public Atendimento(Paciente p, String senha, Date data) {
 		super();
 		this.p = p;
 		this.senha = senha;
-		this.hora = hora;
+		//this.hora = hora;
 		this.data = data;
 	}
 
@@ -38,13 +38,13 @@ public class Atendimento {
 		this.senha = senha;
 	}
 
-	public Time getHora() {
-		return hora;
-	}
-
-	public void setHora(Time hora) {
-		this.hora = hora;
-	}
+//	public Date getHora() {
+//		return hora;
+//	}
+//
+//	public void setHora(Date hora) {
+//		this.hora = hora;
+//	}
 
 	public Date getData() {
 		return data;
@@ -53,7 +53,5 @@ public class Atendimento {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	
-	
 	
 }

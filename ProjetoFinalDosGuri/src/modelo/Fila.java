@@ -2,7 +2,7 @@ package modelo;
 
 public class Fila {
 
-	private No primeiro;
+	private NoAtendimento primeiro;
 	
 	// Cria a fila vazia
 	public Fila() {
@@ -17,22 +17,22 @@ public class Fila {
 		return false;
 	}
 	
-	// Adiciona o paciente no final da fila
-	public void addPaciente(Paciente pac) {
+	// Adiciona o atendimento no final da fila
+	public void enfileira(Atendimento at) {
 		
 		if(estaVazia()) {
 			
-			No novo = new No();
-			novo.setPac(pac);
+			NoAtendimento novo = new NoAtendimento();
+			novo.setAt(at);
 			novo.setProximo(this.primeiro);
 			this.primeiro = novo;
 			
 		} else {
 			
-			No novo = new No();
-			novo.setPac(pac);
+			NoAtendimento novo = new NoAtendimento();
+			novo.setAt(at);
 			
-			No aux = this.primeiro;
+			NoAtendimento aux = this.primeiro;
 			
 			while(aux.getProximo() != null) {
 				aux = aux.getProximo();
@@ -44,20 +44,20 @@ public class Fila {
 		
 	}
 	
-	// Remove e retorna o primeiro paciente
-	public Paciente removerPaciente() {
+	// Remove e retorna o primeiro atendimento
+	public Atendimento removerAtendimento() {
 		
-		No aux = this.primeiro;
+		NoAtendimento aux = this.primeiro;
 		this.primeiro = this.primeiro.getProximo();
 		
-		return aux.getPac();
+		return aux.getAt();
 		
 	}
 	
 	// Retorna o próximo (primeiro) da fila
-	public Paciente retornarPrimeiro() {
+	public Atendimento retornarPrimeiro() {
 		
-		return this.primeiro.getPac();
+		return this.primeiro.getAt();
 		
 	}
 	
@@ -71,7 +71,7 @@ public class Fila {
 	// Retorna o tamanho da fila
 	public int tamanhoFila() {
 		
-		No aux;
+		NoAtendimento aux;
 		int tam = 0;
 		
 		for(aux = this.primeiro; aux != null; aux = aux.getProximo()) {
@@ -82,13 +82,13 @@ public class Fila {
 		
 	}
 	
-	// Exibe os pacientes na fila
+	// Exibe os atendimentos na fila
 	public void exibirFila() {
 		
-		No aux;
+		NoAtendimento aux;
 		
 		for(aux = this.primeiro; aux != null; aux = aux.getProximo()) {
-			System.out.println(aux.getPac().getNome());
+			System.out.println(aux.getAt().getP().getNome());
 		}
 		
 	}

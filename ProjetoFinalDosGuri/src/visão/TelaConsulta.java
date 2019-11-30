@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Random;
 
 import javax.swing.JTextField;
@@ -54,8 +56,36 @@ public class TelaConsulta extends JPanel {
 	}
 	
 	public void mostrarSenha() {
+		
+		/*
 		Random rand  = new Random();
 		getTextFieldSenha().setText(Integer.toString(rand.nextInt()));
+		*/
+		
+		// Gerando a senha de acordo com o número de linhas do arquivo de cadastro
+		
+		FileReader fr = null;
+		BufferedReader br = null;
+		int i = 1;
+		
+		try {
+			
+			fr = new FileReader("cadastro.txt");
+			br = new BufferedReader(fr);
+			
+			String linha = br.readLine();
+			
+			while((linha = br.readLine()) != null) {
+				linha = br.readLine();
+				i++;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		getTextFieldSenha().setText(Integer.toString(i));
+		
 	}
 
 	public JTextField getTextFieldCpfPaciente() {
