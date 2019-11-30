@@ -100,9 +100,9 @@ public class PacienteControle implements ActionListener {
 			if(p != null) {
 				dao.filaAtendimento(at);
 			}
-			else {
+			else {   
 				this.tp.getTcon().getLabelStatus().setText("Paciente não encontrado");
-			}
+			} 
 			
 		}	
 	}
