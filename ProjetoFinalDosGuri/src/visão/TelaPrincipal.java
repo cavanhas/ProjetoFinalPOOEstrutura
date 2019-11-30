@@ -67,11 +67,13 @@ public class TelaPrincipal extends JFrame {
 		mnMdico.add(mntmChamarUmNovo);
 		
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
 		lblImg = new JLabel(new ImageIcon(TelaCadastro.class.getResource("/img/ufcspa.png"))); 
