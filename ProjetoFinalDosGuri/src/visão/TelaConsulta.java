@@ -22,34 +22,34 @@ public class TelaConsulta extends JPanel {
 
 	
 	public TelaConsulta() {
-		setLayout(new MigLayout("", "[][][119.00,grow][][][][][]", "[][][][][][20.00][][]"));
+		setLayout(new MigLayout("", "[][][][]", "[][][][][][][20.00][][]"));
 		
 		JLabel lblConsulta = new JLabel("Consulta");
 		lblConsulta.setFont(new Font("Tahoma", Font.BOLD, 17));
 		add(lblConsulta, "cell 0 0");
 		
-		JLabel lblCpfDoPaciente = new JLabel("Cpf do Paciente:");
-		add(lblCpfDoPaciente, "cell 1 2,alignx trailing");
-		
-		textFieldCpfPaciente = new JTextField();
-		add(textFieldCpfPaciente, "cell 2 2,growx");
-		textFieldCpfPaciente.setColumns(10);
+		JLabel lblCpfDoPaciente = new JLabel("CPF do Paciente:");
+		add(lblCpfDoPaciente, "flowx,cell 0 2 2 1");
 		
 		btnConsultar = new JButton("Consultar");
-		add(btnConsultar, "cell 3 2");
+		add(btnConsultar, "cell 2 2 2 1,growx");
 		
-		JLabel lblSenha = new JLabel("Senha:");
-		add(lblSenha, "cell 1 4,alignx center");
-		
-		textFieldSenha = new JTextField();
-		add(textFieldSenha, "cell 2 4,growx");
-		textFieldSenha.setColumns(10);
+		JLabel lblSenha_1 = new JLabel("Senha:");
+		add(lblSenha_1, "flowx,cell 0 4 2 1");
 		
 		btnEncaminharParaAtendimento = new JButton("Encaminhar para Atendimento");
-		add(btnEncaminharParaAtendimento, "cell 3 4");
+		add(btnEncaminharParaAtendimento, "cell 2 4 2 1,growx");
+		
+		textFieldCpfPaciente = new JTextField();
+		add(textFieldCpfPaciente, "cell 0 2,growx");
+		textFieldCpfPaciente.setColumns(10);
+		
+		textFieldSenha = new JTextField();
+		add(textFieldSenha, "cell 0 4,growx");
+		textFieldSenha.setColumns(10);
 		
 		labelStatus = new JLabel("");
-		add(labelStatus, "cell 2 5");
+		add(labelStatus, "cell 0 6 4 1,alignx center");
 
 	}
 	
