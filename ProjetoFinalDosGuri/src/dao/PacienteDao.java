@@ -142,4 +142,24 @@ public class PacienteDao {
 			
 	}
 	
+	public Atendimento listarPacientes() {
+		if(filaP1.estaVazia() == true) {
+			if(filaP2.estaVazia() == true) {
+				if(filaP3.estaVazia() == true) {
+					if(filaP4.estaVazia() == true) {
+						if(filaP5.estaVazia() == true) {
+							
+						}
+					}
+				}
+			}
+		}
+		else {
+			Atendimento at = filaP1.exibirFila();
+			return at;
+		}
+		
+		return null;
+	}
+	
 }

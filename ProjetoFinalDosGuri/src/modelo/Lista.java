@@ -70,6 +70,7 @@ public class Lista {
 		
 	}
 	
+	//Busca paciente na lista pelo cpf
 	public Paciente bucarPaciente(String cpf) {
 		
 		NoPaciente aux;

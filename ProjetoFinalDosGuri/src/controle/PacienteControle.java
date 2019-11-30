@@ -25,6 +25,7 @@ public class PacienteControle implements ActionListener {
 		this.tp.getMntmCadastrarNovoPaciente().addActionListener(this);
 		this.tp.getMntmProcurarUmPaciente().addActionListener(this);
 		this.tp.getMntmAtendimento().addActionListener(this);
+		this.tp.getMntmChamarUmNovo().addActionListener(this);
 		this.tp.getTcad().getBtnCadastrar().addActionListener(this);
 		this.tp.getTcad().getBtnLimpar().addActionListener(this);
 		this.tp.getTcon().getBtnConsultar().addActionListener(this);
@@ -33,6 +34,7 @@ public class PacienteControle implements ActionListener {
 		this.tp.getTatend().getBtnIniciarAtendimento().addActionListener(this);
 		this.tp.getTtriagem().getBtnConcluirTriagem().addActionListener(this);
 		this.tp.getTtriagem().getBtnIrParaFila().addActionListener(this);
+		this.tp.getTtriagem().getBtnConcluirTriagem().addActionListener(this);
 		this.tp.getMntmSair().addActionListener(this);
 		dao = new PacienteDao();
 	}
@@ -57,6 +59,20 @@ public class PacienteControle implements ActionListener {
 			this.tp.setContentPane(this.tp.getTatend());
 			this.tp.revalidate();
 			this.tp.repaint();
+		}
+		
+		if(e.getActionCommand().equals("menuMedico") || e.getActionCommand().equals("Ir para as filas de atendimento")) {
+			this.tp.setContentPane(this.tp.getTmedico());
+			this.tp.revalidate();
+			this.tp.repaint();
+			
+			
+			Atendimento at = new Atendimento();
+			while(at != null) {
+				at = dao.listarPacientes();
+				
+				this.tp.getTmedico().getTextArea().set;
+			}
 		}
 		
 		if (e.getActionCommand().equals("Cadastrar")) {

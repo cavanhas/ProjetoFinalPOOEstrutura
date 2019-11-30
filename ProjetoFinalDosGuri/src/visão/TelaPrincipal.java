@@ -18,9 +18,12 @@ public class TelaPrincipal extends JFrame {
 	private TelaConsulta tcon;
 	private TelaAtendimento tatend;
 	private TelaTriagem ttriagem;
+	private TelaConsultaMedica tmedico;
 	private JMenuItem mntmProcurarUmPaciente;
 	private JMenuItem mntmAtendimento;
 	private JMenuItem mntmSair;
+	private JMenu mnMdico;
+	private JMenuItem mntmChamarUmNovo;
 
 	public TelaPrincipal() {
 		setTitle("Sistema de Controle de Emerg\u00EAncia Hospitalar");
@@ -50,6 +53,13 @@ public class TelaPrincipal extends JFrame {
 		mntmSair.setActionCommand("menuSair");
 		mnFile.add(mntmSair);
 		
+		mnMdico = new JMenu("M\u00E9dico");
+		menuBar.add(mnMdico);
+		
+		mntmChamarUmNovo = new JMenuItem("Iniciar uma consulta");
+		mntmChamarUmNovo.setActionCommand("menuMedico");
+		mnMdico.add(mntmChamarUmNovo);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -59,6 +69,7 @@ public class TelaPrincipal extends JFrame {
 		tcon = new TelaConsulta();
 		tatend = new TelaAtendimento();
 		ttriagem = new TelaTriagem();
+		tmedico = new TelaConsultaMedica();
 		
 	}
 
@@ -125,6 +136,22 @@ public class TelaPrincipal extends JFrame {
 
 	public void setTtriagem(TelaTriagem ttriagem) {
 		this.ttriagem = ttriagem;
+	}
+
+	public JMenuItem getMntmChamarUmNovo() {
+		return mntmChamarUmNovo;
+	}
+
+	public void setMntmChamarUmNovo(JMenuItem mntmChamarUmNovo) {
+		this.mntmChamarUmNovo = mntmChamarUmNovo;
+	}
+
+	public TelaConsultaMedica getTmedico() {
+		return tmedico;
+	}
+
+	public void setTmedico(TelaConsultaMedica tmedico) {
+		this.tmedico = tmedico;
 	}
 	
 	
