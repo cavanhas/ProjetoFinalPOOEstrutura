@@ -7,25 +7,25 @@ public class Atendimento {
 	
 	private Paciente p;
 	private String senha;
-	//private Date hora;
 	private Date data;
+	private Date hora;
 	
 	public Atendimento() {
 		
 	}
 
-	public Atendimento(Paciente p, String senha, Date data) {
+	public Atendimento(Paciente p, String senha, Date dataHora, Date hora) {
 		super();
 		this.p = p;
 		this.senha = senha;
-		//this.hora = hora;
-		this.data = data;
+		this.data = dataHora;
+		this.setHora(hora);
 	}
 
 	public Paciente getP() {
 		return p;
 	}
-
+	
 	public void setP(Paciente p) {
 		this.p = p;
 	}
@@ -38,20 +38,20 @@ public class Atendimento {
 		this.senha = senha;
 	}
 
-//	public Date getHora() {
-//		return hora;
-//	}
-//
-//	public void setHora(Date hora) {
-//		this.hora = hora;
-//	}
-
-	public Date getData() {
+	public Date getDataHora() {
 		return data;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDataHora(Date dataHora) {
+		this.data = dataHora;
+	}
+
+	public Date getHora() {
+		return hora;
+	}
+
+	public void setHora(Date hora) {
+		this.hora = hora;
 	}
 	
 }

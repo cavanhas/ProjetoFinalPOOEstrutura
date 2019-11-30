@@ -29,6 +29,8 @@ public class PacienteControle implements ActionListener {
 		this.tp.getTcad().getBtnLimpar().addActionListener(this);
 		this.tp.getTcon().getBtnConsultar().addActionListener(this);
 		this.tp.getTcon().getBtnEncaminharParaAtendimento().addActionListener(this);
+		this.tp.getTatend().getBtnChamarSenha().addActionListener(this);
+		this.tp.getTatend().getBtnIniciarAtendimento().addActionListener(this);
 		this.tp.getMntmSair().addActionListener(this);
 		dao = new PacienteDao();
 	}
@@ -99,17 +101,40 @@ public class PacienteControle implements ActionListener {
 			Paciente p = dao.consultarPaciente(cpf);
 			
 			Date data = new Date();
+			Date hora  = new Date();
 			
-			Atendimento at = new Atendimento(p, senha, data);
+			Atendimento at = new Atendimento(p, senha, data, hora);
 			
 			if(p != null) {
 				dao.filaAtendimento(at);
 			}
 			else {   
 				this.tp.getTcon().getLabelStatus().setText("Paciente não encontrado");
-			} 
+			}
 			
-		}	
+			this.tp.getTcon().getTextFieldCpfPaciente().setText("");
+			this.tp.getTcon().getTextFieldSenha().setText("");
+			
+		}
+		
+		if(e.getActionCommand().equals("Chamar senha")) {
+			String senha = dao.chamarSenha();
+			
+			if(senha != null) {
+				this.tp.getTatend().getTextFieldSenha().setText(senha);
+			}
+			else {
+				this.tp.getTatend().getTextFieldSenha().setText("Não há pacientes na fila de atendimento");
+			}
+		}
+		
+		if(e.getActionCommand().equals("Iniciar atendimento")) {
+			this.tp.setContentPane(this.tp.getTtriagem());
+			this.tp.revalidate();
+			this.tp.repaint();
+		}
+		
+		
 	}
 	
 }

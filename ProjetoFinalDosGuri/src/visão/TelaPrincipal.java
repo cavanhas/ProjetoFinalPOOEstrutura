@@ -17,6 +17,7 @@ public class TelaPrincipal extends JFrame {
 	private TelaCadastro tcad;
 	private TelaConsulta tcon;
 	private TelaAtendimento tatend;
+	private TelaTriagem ttriagem;
 	private JMenuItem mntmProcurarUmPaciente;
 	private JMenuItem mntmAtendimento;
 	private JMenuItem mntmSair;
@@ -57,6 +58,7 @@ public class TelaPrincipal extends JFrame {
 		tcad = new TelaCadastro();
 		tcon = new TelaConsulta();
 		tatend = new TelaAtendimento();
+		ttriagem = new TelaTriagem();
 		
 	}
 
@@ -116,5 +118,15 @@ public class TelaPrincipal extends JFrame {
 	public void setMntmSair(JMenuItem mntmSair) {
 		this.mntmSair = mntmSair;
 	}
+
+	public TelaTriagem getTtriagem() {
+		return ttriagem;
+	}
+
+	public void setTtriagem(TelaTriagem ttriagem) {
+		this.ttriagem = ttriagem;
+	}
+	
+	
 	
 }

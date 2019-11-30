@@ -22,6 +22,7 @@ public class PacienteDao {
 		
 	}
 	
+	//Adiciona pacientes la lista de cadastro
 	public boolean cadastrarPaciente(Paciente pac) {
 		
 		FileWriter fw = null;
@@ -68,17 +69,27 @@ public class PacienteDao {
 	// Colocando os pacientes na fila de atendimento
 	public void filaAtendimento(Atendimento at) {
 		
-		filaPac.enfileira(at);
-		
-		/* TestesS
-		 * 
 		DateFormat horaFormat = DateFormat.getTimeInstance(DateFormat.FULL);
 		DateFormat dataFormat = DateFormat.getDateInstance(DateFormat.FULL);
 		
-		System.out.println("Hora do atendimento: " + horaFormat.format(at.getData()));
-		System.out.println("Data do atendimento: " + dataFormat.format(at.getData()));
-		*/
+		System.out.println("Hora do atendimento: " + horaFormat.format(at.getDataHora()));
+		System.out.println("Data do atendimento: " + dataFormat.format(at.getDataHora()));	
+		System.out.println("Nome do paciente: " + at.getP().getNome());
 		
+		
+		filaPac.enfileira(at);	
+		
+	}
+	
+	//chama uma senha caso a haja pacientes na fila
+	public String chamarSenha() {
+		if(filaPac.estaVazia() == true) {
+			return null;
+		}
+		else {
+			Atendimento a = filaPac.retornarPrimeiro();
+			return a.getSenha(); 
+		}
 	}
 	
 }
