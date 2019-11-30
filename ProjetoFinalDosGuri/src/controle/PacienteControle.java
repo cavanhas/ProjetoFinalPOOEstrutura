@@ -61,12 +61,13 @@ public class PacienteControle implements ActionListener {
 			this.tp.repaint();
 		}
 		
-		if(e.getActionCommand().equals("menuMedico") || e.getActionCommand().equals("Ir para as filas de atendimento")) {
+		/*if(e.getActionCommand().equals("menuMedico") || e.getActionCommand().equals("Ir para as filas de atendimento")) {
 			this.tp.setContentPane(this.tp.getTmedico());
 			this.tp.revalidate();
 			this.tp.repaint();
 			
 			
+<<<<<<< HEAD
 //			Atendimento at = new Atendimento();
 //			while(at != null) {
 //				at = dao.listarPacientes();
@@ -74,6 +75,15 @@ public class PacienteControle implements ActionListener {
 //				this.tp.getTmedico().getTextArea().set;
 //			}
 		}
+=======
+			Atendimento at = new Atendimento();
+			while(at != null) {
+				at = dao.listarPacientes();
+				
+				this.tp.getTmedico().getTextArea().set;
+			}
+		}*/
+>>>>>>> branch 'master' of https://github.com/cavanhas/ProjetoFinalPOOEstrutura
 		
 		if (e.getActionCommand().equals("Cadastrar")) {
 			String nomeaux = this.tp.getTcad().getTextFieldnome().getText();
