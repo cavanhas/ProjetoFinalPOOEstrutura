@@ -29,6 +29,7 @@ public class PacienteControle implements ActionListener {
 		this.tp.getTcad().getBtnLimpar().addActionListener(this);
 		this.tp.getTcon().getBtnConsultar().addActionListener(this);
 		this.tp.getTcon().getBtnEncaminharParaAtendimento().addActionListener(this);
+		this.tp.getMntmSair().addActionListener(this);
 		dao = new PacienteDao();
 	}
 
@@ -65,6 +66,10 @@ public class PacienteControle implements ActionListener {
 
 			this.tp.getTcad().limpar();
 			
+		}
+		
+		if(e.getActionCommand().equals("menuSair")){
+			System.exit(0);
 		}
 		
 		if (e.getActionCommand().equals("Limpar")) {
