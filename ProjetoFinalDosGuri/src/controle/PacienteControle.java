@@ -31,6 +31,8 @@ public class PacienteControle implements ActionListener {
 		this.tp.getTcon().getBtnEncaminharParaAtendimento().addActionListener(this);
 		this.tp.getTatend().getBtnChamarSenha().addActionListener(this);
 		this.tp.getTatend().getBtnIniciarAtendimento().addActionListener(this);
+		this.tp.getTtriagem().getBtnConcluirTriagem().addActionListener(this);
+		this.tp.getTtriagem().getBtnIrParaFila().addActionListener(this);
 		this.tp.getMntmSair().addActionListener(this);
 		dao = new PacienteDao();
 	}
@@ -134,6 +136,17 @@ public class PacienteControle implements ActionListener {
 			this.tp.repaint();
 		}
 		
+		if(e.getActionCommand().equals("Concluir Triagem")) {
+			
+			boolean retorno = dao.realizaTriagem(tp);
+			
+			if(retorno != false) {
+				System.out.println("Triagem concluída. Paciente em espera");
+			} else {
+				System.out.println("Ocorreu algum erro");
+			}
+			
+		}
 		
 	}
 	
