@@ -67,12 +67,12 @@ public class PacienteControle implements ActionListener {
 			this.tp.repaint();
 			
 			
-			Atendimento at = new Atendimento();
-			while(at != null) {
-				at = dao.listarPacientes();
-				
-				this.tp.getTmedico().getTextArea().set;
-			}
+//			Atendimento at = new Atendimento();
+//			while(at != null) {
+//				at = dao.listarPacientes();
+//				
+//				this.tp.getTmedico().getTextArea().set;
+//			}
 		}
 		
 		if (e.getActionCommand().equals("Cadastrar")) {

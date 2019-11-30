@@ -7,26 +7,24 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class TelaConsultaMedica extends JPanel {
-
-	private JTextArea textArea;
 	private JButton btnChamarPaciente;
 	private JButton btnSar;
 	private JButton btnRelatrios;
+	private JLabel lblProximoPac;
+	private JTextField textFieldProximoPac;
 	
 	public TelaConsultaMedica() {
-		setLayout(new MigLayout("", "[][grow][][][]", "[][][grow][][]"));
+		setLayout(new MigLayout("", "[][][][]", "[][][][][]"));
 		
 		JLabel lblFilas = new JLabel("Filas");
 		lblFilas.setFont(new Font("Tahoma", Font.BOLD, 17));
 		add(lblFilas, "cell 0 0");
 		
-		JScrollPane scrollPane = new JScrollPane();
-		add(scrollPane, "cell 1 2,grow");
-		
-		textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
+		lblProximoPac = new JLabel("Pr\u00F3ximo paciente:");
+		add(lblProximoPac, "flowx,cell 0 1");
 		
 		btnChamarPaciente = new JButton("Chamar paciente");
 		add(btnChamarPaciente, "flowx,cell 1 3");
@@ -37,14 +35,10 @@ public class TelaConsultaMedica extends JPanel {
 		btnSar = new JButton("Sa\u00EDr");
 		add(btnSar, "cell 1 3,alignx center");
 		
-	}
-	
-	public JTextArea getTextArea() {
-		return textArea;
-	}
-
-	public void setTextArea(JTextArea textArea) {
-		this.textArea = textArea;
+		textFieldProximoPac = new JTextField();
+		add(textFieldProximoPac, "cell 0 1,growx");
+		textFieldProximoPac.setColumns(10);
+		
 	}
 
 	public JButton getBtnChamarPaciente() {
