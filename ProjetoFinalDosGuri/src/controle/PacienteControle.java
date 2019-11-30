@@ -61,7 +61,7 @@ public class PacienteControle implements ActionListener {
 			this.tp.repaint();
 		}
 		
-		if(e.getActionCommand().equals("menuMedico") || e.getActionCommand().equals("Ir para as filas de atendimento")) {
+		/*if(e.getActionCommand().equals("menuMedico") || e.getActionCommand().equals("Ir para as filas de atendimento")) {
 			this.tp.setContentPane(this.tp.getTmedico());
 			this.tp.revalidate();
 			this.tp.repaint();
@@ -73,7 +73,7 @@ public class PacienteControle implements ActionListener {
 				
 				this.tp.getTmedico().getTextArea().set;
 			}
-		}
+		}*/
 		
 		if (e.getActionCommand().equals("Cadastrar")) {
 			String nomeaux = this.tp.getTcad().getTextFieldnome().getText();

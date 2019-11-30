@@ -1,14 +1,18 @@
 package visão;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JLabel;
 
 public class TelaPrincipal extends JFrame {
 
@@ -18,12 +22,14 @@ public class TelaPrincipal extends JFrame {
 	private TelaConsulta tcon;
 	private TelaAtendimento tatend;
 	private TelaTriagem ttriagem;
-	private TelaConsultaMedica tmedico;
+	//private TelaConsultaMedica tmedico;
 	private JMenuItem mntmProcurarUmPaciente;
 	private JMenuItem mntmAtendimento;
 	private JMenuItem mntmSair;
 	private JMenu mnMdico;
 	private JMenuItem mntmChamarUmNovo;
+	private JPanel panel;
+	private JLabel lblImg;
 
 	public TelaPrincipal() {
 		setTitle("Sistema de Controle de Emerg\u00EAncia Hospitalar");
@@ -65,11 +71,20 @@ public class TelaPrincipal extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		tcad = new TelaCadastro();
+		panel = new JPanel();
+		contentPane.add(panel, BorderLayout.SOUTH);
+		
+		lblImg = new JLabel(new ImageIcon(TelaCadastro.class.getResource("/img/ufcspa.png"))); 
+		lblImg.setBackground(new Color(102, 205, 170));
+		panel.add(lblImg, "cell 0 0,alignx center");
+		lblImg.setHorizontalAlignment(SwingConstants.TRAILING);
+		panel.add(lblImg);
+		
+		/*tcad = new TelaCadastro();
 		tcon = new TelaConsulta();
 		tatend = new TelaAtendimento();
-		ttriagem = new TelaTriagem();
-		tmedico = new TelaConsultaMedica();
+		ttriagem = new TelaTriagem();*/
+		//tmedico = new TelaConsultaMedica();
 		
 	}
 
@@ -146,13 +161,13 @@ public class TelaPrincipal extends JFrame {
 		this.mntmChamarUmNovo = mntmChamarUmNovo;
 	}
 
-	public TelaConsultaMedica getTmedico() {
+	/*public TelaConsultaMedica getTmedico() {
 		return tmedico;
 	}
 
 	public void setTmedico(TelaConsultaMedica tmedico) {
 		this.tmedico = tmedico;
-	}
+	}*/
 	
 	
 	
