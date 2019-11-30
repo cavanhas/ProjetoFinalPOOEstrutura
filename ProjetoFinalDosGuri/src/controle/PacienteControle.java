@@ -83,7 +83,6 @@ public class PacienteControle implements ActionListener {
 				this.tp.getTmedico().getTextArea().set;
 			}
 		}*/
->>>>>>> branch 'master' of https://github.com/cavanhas/ProjetoFinalPOOEstrutura
 		
 		if (e.getActionCommand().equals("Cadastrar")) {
 			String nomeaux = this.tp.getTcad().getTextFieldnome().getText();
