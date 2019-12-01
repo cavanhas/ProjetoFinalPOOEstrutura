@@ -102,7 +102,9 @@ public class PacienteDao {
 	// Aloca o paciente na fila de prioridade correta
 	public boolean realizaTriagem(TelaPrincipal tp) {
 			
-		Atendimento aux = filaPac.removerAtendimento();
+		Atendimento aux = new Atendimento();
+		
+		aux = filaPac.removerAtendimento();
 			
 		if(tp.getTtriagem().getCheckBoxEntubado().isSelected() || tp.getTtriagem().getCheckBoxApneia().isSelected()
 				|| tp.getTtriagem().getCheckBoxSemPulso().isSelected() || tp.getTtriagem().getCheckBoxSemReacao().isSelected()) {
@@ -143,21 +145,38 @@ public class PacienteDao {
 	}
 	
 	public Atendimento listarPacientes() {
+		
+		Atendimento aux = null;
+		
 		if(filaP1.estaVazia() == true) {
 			if(filaP2.estaVazia() == true) {
 				if(filaP3.estaVazia() == true) {
 					if(filaP4.estaVazia() == true) {
 						if(filaP5.estaVazia() == true) {
 							
+						} else {
+							aux = filaP5.retornarPrimeiro();
+							return aux;
 						}
+					} else {
+						aux = filaP4.retornarPrimeiro();
+						return aux;
 					}
+				} else {
+					aux = filaP3.retornarPrimeiro();
+					return aux;
 				}
+			} else {
+				aux = filaP2.retornarPrimeiro();
+				return aux;
 			}
 		}
 		else {
+			aux = filaP1.retornarPrimeiro();
+			return aux;
 		}
 		
-		return null;
+		return aux;
 	}
 	
 }

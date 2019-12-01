@@ -22,7 +22,7 @@ public class TelaPrincipal extends JFrame {
 	private TelaConsulta tcon;
 	private TelaAtendimento tatend;
 	private TelaTriagem ttriagem;
-	//private TelaConsultaMedica tmedico;
+	private TelaConsultaMedica tmedico;
 	private JMenuItem mntmProcurarUmPaciente;
 	private JMenuItem mntmAtendimento;
 	private JMenuItem mntmSair;
@@ -82,11 +82,11 @@ public class TelaPrincipal extends JFrame {
 		lblImg.setHorizontalAlignment(SwingConstants.TRAILING);
 		panel.add(lblImg);
 		
-		/*tcad = new TelaCadastro();
+		tcad = new TelaCadastro();
 		tcon = new TelaConsulta();
 		tatend = new TelaAtendimento();
-		ttriagem = new TelaTriagem();*/
-		//tmedico = new TelaConsultaMedica();
+		ttriagem = new TelaTriagem();
+		tmedico = new TelaConsultaMedica();
 		
 	}
 
@@ -163,14 +163,12 @@ public class TelaPrincipal extends JFrame {
 		this.mntmChamarUmNovo = mntmChamarUmNovo;
 	}
 
-	/*public TelaConsultaMedica getTmedico() {
+	public TelaConsultaMedica getTmedico() {
 		return tmedico;
 	}
 
 	public void setTmedico(TelaConsultaMedica tmedico) {
 		this.tmedico = tmedico;
-	}*/
-	
-	
-	
+	}
+
 }

@@ -35,6 +35,7 @@ public class PacienteControle implements ActionListener {
 		this.tp.getTtriagem().getBtnConcluirTriagem().addActionListener(this);
 		this.tp.getTtriagem().getBtnIrParaFila().addActionListener(this);
 		this.tp.getTtriagem().getBtnConcluirTriagem().addActionListener(this);
+		this.tp.getTmedico().getBtnChamarPaciente().addActionListener(this);
 		this.tp.getMntmSair().addActionListener(this);
 		dao = new PacienteDao();
 	}
@@ -61,29 +62,17 @@ public class PacienteControle implements ActionListener {
 			this.tp.repaint();
 		}
 		
-		/*if(e.getActionCommand().equals("menuMedico") || e.getActionCommand().equals("Ir para as filas de atendimento")) {
+		if(e.getActionCommand().equals("menuMedico") || e.getActionCommand().equals("Ir para as filas de atendimento")) {
+			
 			this.tp.setContentPane(this.tp.getTmedico());
 			this.tp.revalidate();
 			this.tp.repaint();
 			
+			Atendimento proximo = dao.listarPacientes();
 			
-<<<<<<< HEAD
-//			Atendimento at = new Atendimento();
-//			while(at != null) {
-//				at = dao.listarPacientes();
-//				
-//				this.tp.getTmedico().getTextArea().set;
-//			}
+			this.tp.getTmedico().getLblProximoPacDesc().setText(proximo.getP().getNome() + " Senha: " + proximo.getSenha());
+			
 		}
-=======
-			Atendimento at = new Atendimento();
-			while(at != null) {
-				at = dao.listarPacientes();
-				
-				this.tp.getTmedico().getTextArea().set;
-			}
-		}*/
->>>>>>> branch 'master' of https://github.com/cavanhas/ProjetoFinalPOOEstrutura
 		
 		if (e.getActionCommand().equals("Cadastrar")) {
 			String nomeaux = this.tp.getTcad().getTextFieldnome().getText();
@@ -135,6 +124,7 @@ public class PacienteControle implements ActionListener {
 			
 			if(p != null) {
 				dao.filaAtendimento(at);
+				System.out.println("Aqui");
 			}
 			else {   
 				this.tp.getTcon().getLabelStatus().setText("Paciente não encontrado");
@@ -171,6 +161,12 @@ public class PacienteControle implements ActionListener {
 			} else {
 				System.out.println("Ocorreu algum erro");
 			}
+			
+		}
+		
+		if(e.getActionCommand().equals("Chamar paciente")) {
+			
+			
 			
 		}
 		
