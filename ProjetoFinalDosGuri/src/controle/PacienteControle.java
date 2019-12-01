@@ -70,7 +70,12 @@ public class PacienteControle implements ActionListener {
 			
 			Atendimento proximo = dao.listarPacientes();
 			
-			this.tp.getTmedico().getLblProximoPacDesc().setText(proximo.getP().getNome() + "          Senha: " + proximo.getSenha());
+			if(!dao.atendimentoVazio()) {
+				this.tp.getTmedico().getLblProximoPacDesc().setText(proximo.getP().getNome() + "          Senha: " + proximo.getSenha());
+			}
+			else {
+				this.tp.getTmedico().getLblProximoPacDesc().setText("Não há pacientes na fila");
+			}
 			
 			dao.exibirFilas(tp);
 			
@@ -152,6 +157,8 @@ public class PacienteControle implements ActionListener {
 			this.tp.setContentPane(this.tp.getTtriagem());
 			this.tp.revalidate();
 			this.tp.repaint();
+			
+			this.tp.getTatend().limpar();
 		}
 		
 		if(e.getActionCommand().equals("Concluir Triagem")) {
@@ -167,9 +174,7 @@ public class PacienteControle implements ActionListener {
 		}
 		
 		if(e.getActionCommand().equals("Chamar paciente")) {
-			
-			
-			
+			dao.terminarAtendimento();						
 		}
 		
 	}
