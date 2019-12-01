@@ -12,6 +12,7 @@ import modelo.Atendimento;
 import modelo.Fila;
 import modelo.Lista;
 import modelo.Paciente;
+import visão.TelaConsulta;
 import visão.TelaPrincipal;
 import visão.TelaTriagem;
 
@@ -103,19 +104,21 @@ public class PacienteDao {
 	public boolean realizaTriagem(TelaPrincipal tp) {
 		
 		Atendimento aux = filaPac.removerAtendimento();
+
+		//aux = filaPac.retornarPrimeiro();
 			
 		if(tp.getTtriagem().getCheckBoxEntubado().isSelected() || tp.getTtriagem().getCheckBoxApneia().isSelected()
 				|| tp.getTtriagem().getCheckBoxSemPulso().isSelected() || tp.getTtriagem().getCheckBoxSemReacao().isSelected()) {
 				filaP1.enfileira(aux);
 				return true;
 		}
-		if(tp.getTtriagem().getCheckBoxRisco().isSelected() || tp.getTtriagem().getCheckBoxConfuso().isSelected()
+		else if(tp.getTtriagem().getCheckBoxRisco().isSelected() || tp.getTtriagem().getCheckBoxConfuso().isSelected()
 				|| tp.getTtriagem().getCheckBoxDesorientado().isSelected() || tp.getTtriagem().getCheckBoxLetargico().isSelected()
 				|| tp.getTtriagem().getCheckBoxDorAguda().isSelected()) {
 			filaP2.enfileira(aux);
 			return true;
 		}
-		if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
+		else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
 			if(Integer.parseInt(tp.getTtriagem().getTextFieldFreqCardiaca().getText()) > 90
 					|| Integer.parseInt(tp.getTtriagem().getTextFieldFreqRespiratoria().getText()) > 20
 					|| (Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) < 36
@@ -129,17 +132,22 @@ public class PacienteDao {
 				return true;
 			}
 		}
-		if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnNaoProc().isSelected()) {
+		else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnNaoProc().isSelected()) {
 			filaP4.enfileira(aux);
 			return true;
 		}
-		if(tp.getTtriagem().getRadioButtonNao().isSelected()) {
+		else if(tp.getTtriagem().getRadioButtonNao().isSelected()) {
 			filaP5.enfileira(aux);
 			return true;
 		}
 		
+		
 		return false;
 			
+	}
+	
+	public boolean enfileirarPorPrioridade(int i) {
+		return false;
 	}
 	
 	public Atendimento listarPacientes() {
@@ -177,4 +185,57 @@ public class PacienteDao {
 		return aux;
 	}
 	
+	public void exibirFilas(TelaPrincipal tp) {
+		if(filaP1.estaVazia()) {
+			tp.getTmedico().getLblFila1().setText(Integer.toString(0));
+		}
+		else {
+			int p1 = filaP1.tamanhoFila();
+			tp.getTmedico().getLblFila1().setText(Integer.toString(p1));
+		}
+		
+		if(filaP2.estaVazia()) {
+			tp.getTmedico().getLblFila2().setText(Integer.toString(0));
+		}
+		else {
+			int p2 = filaP2.tamanhoFila();
+			tp.getTmedico().getLblFila2().setText(Integer.toString(p2));
+		}
+		
+		if(filaP3.estaVazia()) {
+			tp.getTmedico().getLblFila3().setText(Integer.toString(0));
+		}
+		else {
+			int p3 = filaP3.tamanhoFila();
+			tp.getTmedico().getLblFila3().setText(Integer.toString(p3));
+		}
+		
+		if(filaP4.estaVazia()) {
+			tp.getTmedico().getLblFila4().setText(Integer.toString(0));
+		}
+		else {
+			int p4 = filaP4.tamanhoFila();
+			tp.getTmedico().getLblFila4().setText(Integer.toString(p4));
+		}
+		
+		if(filaP5.estaVazia()) {
+			tp.getTmedico().getLblFila5().setText(Integer.toString(0));
+		}
+		else {
+			int p5 = filaP5.tamanhoFila();
+			tp.getTmedico().getLblFila5().setText(Integer.toString(p5));
+		}
+	}
+	
+	public boolean terminarAtendimento() {
+		System.out.println("dhiemison");
+		return false;
+	}
+	
+	public boolean atendimentoVazio() {
+		if(filaPac.estaVazia() != true) {
+			return false;
+		}
+		return true;
+	}
 }

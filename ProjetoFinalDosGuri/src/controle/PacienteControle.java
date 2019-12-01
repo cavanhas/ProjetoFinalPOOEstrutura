@@ -14,7 +14,7 @@ import modelo.Paciente;
 import visão.TelaPrincipal;
 
 public class PacienteControle implements ActionListener {
-	
+
 	private Paciente pa;
 	private TelaPrincipal tp;
 	private PacienteDao dao;
@@ -36,44 +36,55 @@ public class PacienteControle implements ActionListener {
 		this.tp.getTtriagem().getBtnIrParaFila().addActionListener(this);
 		this.tp.getTtriagem().getBtnConcluirTriagem().addActionListener(this);
 		this.tp.getTmedico().getBtnChamarPaciente().addActionListener(this);
+		this.tp.getTmedico().getBtnRelatrios().addActionListener(this);
 		this.tp.getMntmSair().addActionListener(this);
+		this.tp.getMntmExibeRelat().addActionListener(this);
+		this.tp.getTandamento().getBtnEncerrarAtendimento().addActionListener(this);
 		dao = new PacienteDao();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 		if (e.getActionCommand().equals("menuCad")) {
 			this.tp.setContentPane(this.tp.getTcad());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
-		
-		if(e.getActionCommand().equals("menuCon")) {
+
+		if (e.getActionCommand().equals("menuCon")) {
 			this.tp.setContentPane(this.tp.getTcon());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
-		
-		if(e.getActionCommand().equals("menuAtend")) {
+
+		if (e.getActionCommand().equals("menuAtend")) {
 			this.tp.setContentPane(this.tp.getTatend());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
-		
-		if(e.getActionCommand().equals("menuMedico") || e.getActionCommand().equals("Ir para as filas de atendimento")) {
-			
+
+		if (e.getActionCommand().equals("menuMedico")
+				|| e.getActionCommand().equals("Ir para as filas de atendimento")) {
+
 			this.tp.setContentPane(this.tp.getTmedico());
 			this.tp.revalidate();
 			this.tp.repaint();
-			
+
 			Atendimento proximo = dao.listarPacientes();
-			
-			this.tp.getTmedico().getLblProximoPacDesc().setText(proximo.getP().getNome() + " Senha: " + proximo.getSenha());
-			
+
+			if (!dao.atendimentoVazio()) {
+				this.tp.getTmedico().getLblProximoPacDesc()
+						.setText(proximo.getP().getNome() + "          Senha: " + proximo.getSenha());
+			} else {
+				this.tp.getTmedico().getLblProximoPacDesc().setText("Não há pacientes na fila");
+			}
+
+			dao.exibirFilas(tp);
+
 		}
-		
+
 		if (e.getActionCommand().equals("Cadastrar")) {
 			String nomeaux = this.tp.getTcad().getTextFieldnome().getText();
 			String cpfaux = this.tp.getTcad().getTextFieldcpf().getText();
@@ -84,92 +95,102 @@ public class PacienteControle implements ActionListener {
 			dao.cadastrarPaciente(p);
 
 			this.tp.getTcad().limpar();
-			
+
 		}
-		
-		if(e.getActionCommand().equals("menuSair")){
+
+		if (e.getActionCommand().equals("menuSair")) {
 			System.exit(0);
 		}
-		
+
 		if (e.getActionCommand().equals("Limpar")) {
 			this.tp.getTcad().limpar();
 		}
-		
-		if(e.getActionCommand().equals("Consultar")) {
-			
+
+		if (e.getActionCommand().equals("Consultar")) {
+
 			String cpf = this.tp.getTcon().getTextFieldCpfPaciente().getText();
-			
+
 			Paciente p = dao.consultarPaciente(cpf);
-			
-			if(p != null) {
+
+			if (p != null) {
 				this.tp.getTcon().mostrarSenha();
 				this.tp.getTcon().getLabelStatus().setText("Paciente encontrado");
-			}
-			else {
+			} else {
 				this.tp.getTcon().getLabelStatus().setText("Paciente não encontrado");
-			}		
+			}
 		}
-		
-		if(e.getActionCommand().equals("Encaminhar para Atendimento")) {
-			
+
+		if (e.getActionCommand().equals("Encaminhar para Atendimento")) {
+
 			String cpf = this.tp.getTcon().getTextFieldCpfPaciente().getText();
 			String senha = this.tp.getTcon().getTextFieldSenha().getText();
-			
+
 			Paciente p = dao.consultarPaciente(cpf);
-			
+
 			Date data = new Date();
-			Date hora  = new Date();
-			
+			Date hora = new Date();
+
 			Atendimento at = new Atendimento(p, senha, data, hora);
-			
-			if(p != null) {
+
+			if (p != null) {
 				dao.filaAtendimento(at);
 				System.out.println("Aqui");
-			}
-			else {   
+			} else {
 				this.tp.getTcon().getLabelStatus().setText("Paciente não encontrado");
 			}
-			
+
 			this.tp.getTcon().getTextFieldCpfPaciente().setText("");
 			this.tp.getTcon().getTextFieldSenha().setText("");
-			
+
 		}
-		
-		if(e.getActionCommand().equals("Chamar senha")) {
+
+		if (e.getActionCommand().equals("Chamar senha")) {
 			String senha = dao.chamarSenha();
-			
-			if(senha != null) {
+
+			if (senha != null) {
 				this.tp.getTatend().getTextFieldSenha().setText(senha);
-			}
-			else {
+			} else {
 				this.tp.getTatend().getTextFieldSenha().setText("Não há pacientes na fila de atendimento");
 			}
 		}
-		
-		if(e.getActionCommand().equals("Iniciar atendimento")) {
+
+		if (e.getActionCommand().equals("Iniciar atendimento")) {
 			this.tp.setContentPane(this.tp.getTtriagem());
 			this.tp.revalidate();
 			this.tp.repaint();
+
+			this.tp.getTatend().limpar();
 		}
-		
-		if(e.getActionCommand().equals("Concluir Triagem")) {
-			
+
+		if (e.getActionCommand().equals("menuRelatorio") || e.getActionCommand().equals("Relat\u00F3rios")) {
+			this.tp.setContentPane(this.tp.getTrelat());
+			this.tp.revalidate();
+			this.tp.repaint();
+
+		}
+
+		if (e.getActionCommand().equals("Concluir Triagem")) {
+
 			boolean retorno = dao.realizaTriagem(tp);
-			
-			if(retorno != false) {
+
+			if (retorno != false) {
 				System.out.println("Triagem concluída. Paciente em espera");
 			} else {
 				System.out.println("Ocorreu algum erro");
 			}
-			
+
+		}
+
+		if (e.getActionCommand().equals("Chamar paciente")) {
+			this.tp.setContentPane(this.tp.getTandamento());
+			this.tp.revalidate();
+			this.tp.repaint();
 		}
 		
-		if(e.getActionCommand().equals("Chamar paciente")) {
-			
-			
-			
+		if (e.getActionCommand().equals("Encerrar atendimento")) {
+			dao.terminarAtendimento();
 		}
-		
+
 	}
-	
+
 }

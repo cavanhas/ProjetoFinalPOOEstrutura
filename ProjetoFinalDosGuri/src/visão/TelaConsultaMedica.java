@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 
 public class TelaConsultaMedica extends JPanel {
 	private JButton btnChamarPaciente;
-	private JButton btnSar;
 	private JButton btnRelatrios;
 	private JLabel lblProximoPac;
 	private JLabel lblFilaP1;
@@ -57,9 +56,6 @@ public class TelaConsultaMedica extends JPanel {
 		btnRelatrios = new JButton("Relat\u00F3rios");
 		add(btnRelatrios, "cell 0 10");
 		
-		btnSar = new JButton("Sa\u00EDr");
-		add(btnSar, "cell 0 10,alignx center");
-		
 		lblProximoPacDesc = new JLabel("");
 		add(lblProximoPacDesc, "cell 0 1");
 		
@@ -86,14 +82,6 @@ public class TelaConsultaMedica extends JPanel {
 
 	public void setBtnChamarPaciente(JButton btnChamarPaciente) {
 		this.btnChamarPaciente = btnChamarPaciente;
-	}
-
-	public JButton getBtnSar() {
-		return btnSar;
-	}
-
-	public void setBtnSar(JButton btnSar) {
-		this.btnSar = btnSar;
 	}
 
 	public JButton getBtnRelatrios() {

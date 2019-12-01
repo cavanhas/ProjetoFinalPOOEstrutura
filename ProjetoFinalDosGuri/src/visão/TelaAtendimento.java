@@ -34,6 +34,10 @@ public class TelaAtendimento extends JPanel {
 		
 
 	}
+	
+	public void limpar() {
+		getTextFieldSenha().setText("");
+	}
 
 	public JTextField getTextFieldSenha() {
 		return textFieldSenha;
