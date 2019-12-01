@@ -1,7 +1,7 @@
 package controle;
 
 import modelo.Fila;
-import modelo.Lista;
+import modelo.ListaPacientes;
 import modelo.Paciente;
 import visão.TelaPrincipal;
 

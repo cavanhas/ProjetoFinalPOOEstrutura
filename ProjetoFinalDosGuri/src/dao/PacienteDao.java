@@ -10,7 +10,8 @@ import java.util.Date;
 
 import modelo.Atendimento;
 import modelo.Fila;
-import modelo.Lista;
+import modelo.ListaAtendimentos;
+import modelo.ListaPacientes;
 import modelo.Paciente;
 import visão.TelaConsulta;
 import visão.TelaPrincipal;
@@ -18,7 +19,8 @@ import visão.TelaTriagem;
 
 public class PacienteDao {
 	
-	Lista listaCad = new Lista();
+	ListaPacientes listaCad = new ListaPacientes();
+	ListaAtendimentos listaEncerrados = new ListaAtendimentos();
 	Fila filaPac = new Fila();
 	Fila filaP1 = new Fila();
 	Fila filaP2 = new Fila();
@@ -60,7 +62,12 @@ public class PacienteDao {
 		
 		listaCad.addPaciente(pac);
 		
+		// Teste aqui
+		System.out.println("Lista de pacientes:");
+		listaCad.exibirLista();
+		
 		return true;
+		
 	}
 	
 	public Paciente consultarPaciente(String cpf) {
@@ -87,6 +94,11 @@ public class PacienteDao {
 		
 		filaPac.enfileira(at);	
 		
+		// Teste aqui
+		System.out.println("Fila de pacientes:");
+		filaPac.exibirFila();
+		System.out.println("Tamanho atual da fila de pacientes: " + filaPac.tamanhoFila());
+		
 	}
 	
 	//chama uma senha caso a haja pacientes na fila
@@ -101,49 +113,75 @@ public class PacienteDao {
 	}
 	
 	// Aloca o paciente na fila de prioridade correta
-	public boolean realizaTriagem(TelaPrincipal tp) {
+	public void realizaTriagem(int op) {
 		
 		Atendimento aux = filaPac.removerAtendimento();
-
-		//aux = filaPac.retornarPrimeiro();
+		
+		if(aux != null) {
+			switch(op) {
 			
-		if(tp.getTtriagem().getCheckBoxEntubado().isSelected() || tp.getTtriagem().getCheckBoxApneia().isSelected()
-				|| tp.getTtriagem().getCheckBoxSemPulso().isSelected() || tp.getTtriagem().getCheckBoxSemReacao().isSelected()) {
-				filaP1.enfileira(aux);
-				return true;
-		}
-		else if(tp.getTtriagem().getCheckBoxRisco().isSelected() || tp.getTtriagem().getCheckBoxConfuso().isSelected()
-				|| tp.getTtriagem().getCheckBoxDesorientado().isSelected() || tp.getTtriagem().getCheckBoxLetargico().isSelected()
-				|| tp.getTtriagem().getCheckBoxDorAguda().isSelected()) {
-			filaP2.enfileira(aux);
-			return true;
-		}
-		else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
-			if(Integer.parseInt(tp.getTtriagem().getTextFieldFreqCardiaca().getText()) > 90
-					|| Integer.parseInt(tp.getTtriagem().getTextFieldFreqRespiratoria().getText()) > 20
-					|| (Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) < 36
-							|| Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) > 38)
-					|| (Integer.parseInt(tp.getTtriagem().getTextFieldOximetria().getText()) < 90)
-					|| (Integer.parseInt(tp.getTtriagem().getTextFieldIndiceFluxoResp().getText()) < 200)) {
-				filaP2.enfileira(aux);
-				return true;
-			} else {
-				filaP3.enfileira(aux);
-				return true;
+				case 1:
+					filaP1.enfileira(aux);
+					break;
+				case 2:
+					filaP2.enfileira(aux);
+					break;
+				case 3:
+					filaP3.enfileira(aux);
+					break;
+				case 4:
+					filaP4.enfileira(aux);
+					break;
+				case 5:
+					filaP5.enfileira(aux);
+					break;
+				default:
+					System.out.println("Ocorreu algum erro :(");
 			}
-		}
-		else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnNaoProc().isSelected()) {
-			filaP4.enfileira(aux);
-			return true;
-		}
-		else if(tp.getTtriagem().getRadioButtonNao().isSelected()) {
-			filaP5.enfileira(aux);
-			return true;
+		} else {
+			System.out.println("Não há pacientes na fila :)");
 		}
 		
+//		if(aux != null) {
+//			
+//			if(tp.getTtriagem().getCheckBoxEntubado().isSelected() || tp.getTtriagem().getCheckBoxApneia().isSelected()
+//					|| tp.getTtriagem().getCheckBoxSemPulso().isSelected() || tp.getTtriagem().getCheckBoxSemReacao().isSelected()) {
+//					filaP1.enfileira(aux);
+//					return 1;
+//			}
+//			else if(tp.getTtriagem().getCheckBoxRisco().isSelected() || tp.getTtriagem().getCheckBoxConfuso().isSelected()
+//					|| tp.getTtriagem().getCheckBoxDesorientado().isSelected() || tp.getTtriagem().getCheckBoxLetargico().isSelected()
+//					|| tp.getTtriagem().getCheckBoxDorAguda().isSelected()) {
+//				filaP2.enfileira(aux);
+//				return 1;
+//			}
+//			else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
+//				if(Integer.parseInt(tp.getTtriagem().getTextFieldFreqCardiaca().getText()) > 90
+//						|| Integer.parseInt(tp.getTtriagem().getTextFieldFreqRespiratoria().getText()) > 20
+//						|| (Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) < 36
+//								|| Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) > 38)
+//						|| (Integer.parseInt(tp.getTtriagem().getTextFieldOximetria().getText()) < 90)
+//						|| (Integer.parseInt(tp.getTtriagem().getTextFieldIndiceFluxoResp().getText()) < 200)) {
+//					filaP2.enfileira(aux);
+//					return 1;
+//				} else {
+//					filaP3.enfileira(aux);
+//					return 1;
+//				}
+//			}
+//			else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnNaoProc().isSelected()) {
+//				filaP4.enfileira(aux);
+//				return 1;
+//			}
+//			else if(tp.getTtriagem().getRadioButtonNao().isSelected()) {
+//				filaP5.enfileira(aux);
+//				return 1;
+//			}
+//		
+//		} 
+//			
+//		return 0;
 		
-		return false;
-			
 	}
 	
 	public boolean enfileirarPorPrioridade(int i) {
@@ -227,9 +265,40 @@ public class PacienteDao {
 		}
 	}
 	
-	public boolean terminarAtendimento() {
-		System.out.println("dhiemison");
-		return false;
+	public boolean terminarAtendimento(Atendimento at) {
+		
+		Atendimento aux = null;
+		
+		if(filaP1.estaVazia() == true) {
+			if(filaP2.estaVazia() == true) {
+				if(filaP3.estaVazia() == true) {
+					if(filaP4.estaVazia() == true) {
+						if(filaP5.estaVazia() == true) {
+							
+						} else {
+							aux = filaP5.removerAtendimento();
+						}
+					} else {
+						aux = filaP4.removerAtendimento();
+					}
+				} else {
+					aux = filaP3.removerAtendimento();
+				}
+			} else {
+				aux = filaP2.removerAtendimento();
+			}
+		}
+		else {
+			aux = filaP1.removerAtendimento();
+		}
+		
+		listaEncerrados.addAtendimento(at);
+		
+		// Teste aqui
+		listaEncerrados.exibirLista();
+		
+		return true;
+		
 	}
 	
 	public boolean atendimentoVazio() {
@@ -238,4 +307,7 @@ public class PacienteDao {
 		}
 		return true;
 	}
+	
+	
+	
 }

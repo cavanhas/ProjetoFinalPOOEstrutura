@@ -12,7 +12,6 @@ public class TelaAndamento extends JPanel {
 
 	private JLabel lblPacienteAtendido;
 	private JLabel lblHoraAtendimento;
-	private JLabel lblSituacaoPaciente;
 	private JButton btnEncerrarAtendimento;
 
 	public TelaAndamento() {
@@ -28,9 +27,6 @@ public class TelaAndamento extends JPanel {
 
 		lblHoraAtendimento = new JLabel("");
 		add(lblHoraAtendimento, "cell 0 3");
-
-		lblSituacaoPaciente = new JLabel("");
-		add(lblSituacaoPaciente, "cell 0 4");
 
 		btnEncerrarAtendimento = new JButton("Encerrar atendimento");
 		add(btnEncerrarAtendimento, "cell 0 8,grow");
@@ -51,14 +47,6 @@ public class TelaAndamento extends JPanel {
 
 	public void setLblHoraAtendimento(JLabel lblHoraAtendimento) {
 		this.lblHoraAtendimento = lblHoraAtendimento;
-	}
-
-	public JLabel getLblSituacaoPaciente() {
-		return lblSituacaoPaciente;
-	}
-
-	public void setLblSituacaoPaciente(JLabel lblSituacaoPaciente) {
-		this.lblSituacaoPaciente = lblSituacaoPaciente;
 	}
 
 	public JButton getBtnEncerrarAtendimento() {

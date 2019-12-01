@@ -9,7 +9,7 @@ import java.util.Date;
 
 import dao.PacienteDao;
 import modelo.Atendimento;
-import modelo.Lista;
+import modelo.ListaPacientes;
 import modelo.Paciente;
 import visão.TelaPrincipal;
 
@@ -74,7 +74,9 @@ public class PacienteControle implements ActionListener {
 
 			Atendimento proximo = dao.listarPacientes();
 
-			if (!dao.atendimentoVazio()) {
+			//!dao.atendimentoVazio()
+			
+			if (proximo != null) {
 				this.tp.getTmedico().getLblProximoPacDesc()
 						.setText(proximo.getP().getNome() + "          Senha: " + proximo.getSenha());
 			} else {
@@ -127,12 +129,10 @@ public class PacienteControle implements ActionListener {
 
 			Paciente p = dao.consultarPaciente(cpf);
 
-			Date data = new Date();
-			Date hora = new Date();
-
-			Atendimento at = new Atendimento(p, senha, data, hora);
-
 			if (p != null) {
+				Date data = new Date();
+				Date hora = new Date();
+				Atendimento at = new Atendimento(p, senha, data, hora);
 				dao.filaAtendimento(at);
 				System.out.println("Aqui");
 			} else {
@@ -163,6 +163,7 @@ public class PacienteControle implements ActionListener {
 		}
 
 		if (e.getActionCommand().equals("menuRelatorio") || e.getActionCommand().equals("Relat\u00F3rios")) {
+			
 			this.tp.setContentPane(this.tp.getTrelat());
 			this.tp.revalidate();
 			this.tp.repaint();
@@ -171,24 +172,66 @@ public class PacienteControle implements ActionListener {
 
 		if (e.getActionCommand().equals("Concluir Triagem")) {
 
-			boolean retorno = dao.realizaTriagem(tp);
-
-			if (retorno != false) {
-				System.out.println("Triagem concluída. Paciente em espera");
-			} else {
-				System.out.println("Ocorreu algum erro");
+				
+			if(tp.getTtriagem().getCheckBoxEntubado().isSelected() || tp.getTtriagem().getCheckBoxApneia().isSelected()
+					|| tp.getTtriagem().getCheckBoxSemPulso().isSelected() || tp.getTtriagem().getCheckBoxSemReacao().isSelected()) {
+					dao.realizaTriagem(1);
+			}
+			else if(tp.getTtriagem().getCheckBoxRisco().isSelected() || tp.getTtriagem().getCheckBoxConfuso().isSelected()
+					|| tp.getTtriagem().getCheckBoxDesorientado().isSelected() || tp.getTtriagem().getCheckBoxLetargico().isSelected()
+					|| tp.getTtriagem().getCheckBoxDorAguda().isSelected()) {
+					dao.realizaTriagem(2);
+			}
+			else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
+				if(Integer.parseInt(tp.getTtriagem().getTextFieldFreqCardiaca().getText()) > 90
+						|| Integer.parseInt(tp.getTtriagem().getTextFieldFreqRespiratoria().getText()) > 20
+						|| (Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) < 36
+								|| Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) > 38)
+						|| (Integer.parseInt(tp.getTtriagem().getTextFieldOximetria().getText()) < 90)
+						|| (Integer.parseInt(tp.getTtriagem().getTextFieldIndiceFluxoResp().getText()) < 200)) {
+						dao.realizaTriagem(2);
+				} else {
+					dao.realizaTriagem(3);
+				}
+			}
+			else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnNaoProc().isSelected()) {
+				dao.realizaTriagem(4);
+			}
+			else if(tp.getTtriagem().getRadioButtonNao().isSelected()) {
+				dao.realizaTriagem(5);
 			}
 
 		}
 
 		if (e.getActionCommand().equals("Chamar paciente")) {
+			
 			this.tp.setContentPane(this.tp.getTandamento());
 			this.tp.revalidate();
 			this.tp.repaint();
+			
+			Atendimento aux = dao.listarPacientes();
+			
+			if(aux != null) {
+				this.tp.getTandamento().getLblPacienteAtendido().setText(aux.getP().getNome());
+				this.tp.getTandamento().getLblHoraAtendimento().setText(aux.getHora().toString());
+				dao.terminarAtendimento(aux);
+				Atendimento aux2 = dao.listarPacientes();
+				if(aux2 != null) {
+					this.tp.getTmedico().getLblProximoPacDesc()
+					.setText(aux2.getP().getNome() + "          Senha: " + aux2.getSenha());
+				} else {
+					System.out.println("Não há pacientes em espera");
+				}
+			} else {
+				System.out.println("Não há pacientes em espera");
+			}
+			
 		}
 		
 		if (e.getActionCommand().equals("Encerrar atendimento")) {
-			dao.terminarAtendimento();
+			
+			
+			
 		}
 
 	}

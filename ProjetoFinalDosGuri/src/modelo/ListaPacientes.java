@@ -1,10 +1,10 @@
 package modelo;
 
-public class Lista {
+public class ListaPacientes {
 	
 	private NoPaciente primeiro;
 	
-	public Lista() {
+	public ListaPacientes() {
 		// TODO Auto-generated constructor stub
 		this.primeiro = null;
 	}
