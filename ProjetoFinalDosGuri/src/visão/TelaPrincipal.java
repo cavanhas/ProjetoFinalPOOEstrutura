@@ -26,11 +26,15 @@ public class TelaPrincipal extends JFrame {
 	private TelaAtendimento tatend;
 	private TelaTriagem ttriagem;
 	private TelaConsultaMedica tmedico;
+	private TelaRelatorio trelat;
+	private TelaAndamento tandamento;
 	private JMenuItem mntmProcurarUmPaciente;
 	private JMenuItem mntmAtendimento;
 	private JMenuItem mntmSair;
 	private JMenu mnMdico;
+	private JMenu mnRelatorio;
 	private JMenuItem mntmChamarUmNovo;
+	private JMenuItem mntmExibeRelat;
 	private JPanel panelSul;
 	private JLabel lblImg;
 	private JPanel panelCentro;
@@ -41,87 +45,96 @@ public class TelaPrincipal extends JFrame {
 
 	public TelaPrincipal() {
 		setTitle("Sistema de Controle de Emerg\u00EAncia Hospitalar");
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 360);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu mnFile = new JMenu("File");
+		JMenu mnFile = new JMenu("Arquivo");
 		menuBar.add(mnFile);
 
 		mntmCadastrarNovoPaciente = new JMenuItem("Cadastrar novo paciente");
 		mntmCadastrarNovoPaciente.setActionCommand("menuCad");
 		mnFile.add(mntmCadastrarNovoPaciente);
-		
+
 		mntmProcurarUmPaciente = new JMenuItem("Procurar um paciente");
 		getMntmProcurarUmPaciente().setActionCommand("menuCon");
 		mnFile.add(mntmProcurarUmPaciente);
-		
+
 		mntmAtendimento = new JMenuItem("Atendimento");
 		mntmAtendimento.setActionCommand("menuAtend");
 		mnFile.add(mntmAtendimento);
-		
+
 		mntmSair = new JMenuItem("Sair");
 		mntmSair.setActionCommand("menuSair");
 		mnFile.add(mntmSair);
-		
+
 		mnMdico = new JMenu("M\u00E9dico");
 		menuBar.add(mnMdico);
-		
+
 		mntmChamarUmNovo = new JMenuItem("Iniciar uma consulta");
 		mntmChamarUmNovo.setActionCommand("menuMedico");
 		mnMdico.add(mntmChamarUmNovo);
-		
+
+		mnRelatorio = new JMenu("Relat\u00F3rios");
+		menuBar.add(mnRelatorio);
+
+		mntmExibeRelat = new JMenuItem("Exibir relat\u00F3rios");
+		mntmExibeRelat.setActionCommand("menuRelatorio");
+		mnRelatorio.add(mntmExibeRelat);
+
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		panelSul = new JPanel();
 		panelSul.setBackground(Color.DARK_GRAY);
 		contentPane.add(panelSul, BorderLayout.SOUTH);
-		
-		lblImg = new JLabel(new ImageIcon(TelaCadastro.class.getResource("/img/ufcspa.png"))); 
+
+		lblImg = new JLabel(new ImageIcon(TelaCadastro.class.getResource("/img/ufcspa.png")));
 		lblImg.setBackground(new Color(102, 205, 170));
 		panelSul.add(lblImg, "cell 0 0,alignx center");
 		lblImg.setHorizontalAlignment(SwingConstants.TRAILING);
 		panelSul.add(lblImg);
-		
+
 		panelCentro = new JPanel();
 		panelCentro.setBackground(Color.DARK_GRAY);
 		contentPane.add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(new MigLayout("", "[]", "[][][][][][]"));
-		
+
 		lblSistemaDeControle = new JLabel("SISTEMA DE CONTROLE DE EMERG\u00CANCIA HOSPITALAR");
 		lblSistemaDeControle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSistemaDeControle.setForeground(new Color(255, 0, 0));
 		lblSistemaDeControle.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelCentro.add(lblSistemaDeControle, "cell 0 0,grow");
-		
+
 		lblDesc1 = new JLabel("Atividade desenvolvida para as disciplinas de Estrutura de Dados em Sa\u00FAde");
 		lblDesc1.setForeground(Color.WHITE);
 		lblDesc1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panelCentro.add(lblDesc1, "cell 0 2");
-		
+
 		lblDesc2 = new JLabel("e Programa\u00E7\u00E3o Orientada a Objetos I, na UFCSPA.");
 		lblDesc2.setForeground(Color.WHITE);
 		lblDesc2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panelCentro.add(lblDesc2, "cell 0 3");
-		
+
 		lblAlunos = new JLabel("Alunos: Pedro Dahmer, Rafael Giron e Rodrigo Duarte.");
 		lblAlunos.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblAlunos.setForeground(Color.WHITE);
 		panelCentro.add(lblAlunos, "cell 0 5");
-		
+
 		tcad = new TelaCadastro();
 		tcon = new TelaConsulta();
 		tatend = new TelaAtendimento();
 		ttriagem = new TelaTriagem();
 		tmedico = new TelaConsultaMedica();
-		
+		trelat = new TelaRelatorio();
+		tandamento = new TelaAndamento();
+
 	}
 
 	public JMenuItem getMntmCadastrarNovoPaciente() {
@@ -139,16 +152,15 @@ public class TelaPrincipal extends JFrame {
 	public void setTcad(TelaCadastro tcad) {
 		this.tcad = tcad;
 	}
-	
 
 	public TelaConsulta getTcon() {
 		return tcon;
-	}	
+	}
 
 	public void setTcon(TelaConsulta tcon) {
 		this.tcon = tcon;
 	}
-	
+
 	public JMenuItem getMntmProcurarUmPaciente() {
 		return mntmProcurarUmPaciente;
 	}
@@ -204,5 +216,31 @@ public class TelaPrincipal extends JFrame {
 	public void setTmedico(TelaConsultaMedica tmedico) {
 		this.tmedico = tmedico;
 	}
+
+	public JMenuItem getMntmExibeRelat() {
+		return mntmExibeRelat;
+	}
+
+	public void setMntmExibeRelat(JMenuItem mntmExibeRelat) {
+		this.mntmExibeRelat = mntmExibeRelat;
+	}
+
+	public TelaRelatorio getTrelat() {
+		return trelat;
+	}
+
+	public void setTrelat(TelaRelatorio trelat) {
+		this.trelat = trelat;
+	}
+
+	public TelaAndamento getTandamento() {
+		return tandamento;
+	}
+
+	public void setTandamento(TelaAndamento tandamento) {
+		this.tandamento = tandamento;
+	}
+	
+	
 
 }
