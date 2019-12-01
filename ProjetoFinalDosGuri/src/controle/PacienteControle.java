@@ -70,7 +70,9 @@ public class PacienteControle implements ActionListener {
 			
 			Atendimento proximo = dao.listarPacientes();
 			
-			this.tp.getTmedico().getLblProximoPacDesc().setText(proximo.getP().getNome() + " Senha: " + proximo.getSenha());
+			this.tp.getTmedico().getLblProximoPacDesc().setText(proximo.getP().getNome() + "          Senha: " + proximo.getSenha());
+			
+			dao.exibirFilas(tp);
 			
 		}
 		

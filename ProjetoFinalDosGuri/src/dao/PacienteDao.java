@@ -12,6 +12,7 @@ import modelo.Atendimento;
 import modelo.Fila;
 import modelo.Lista;
 import modelo.Paciente;
+import visão.TelaConsulta;
 import visão.TelaPrincipal;
 import visão.TelaTriagem;
 
@@ -179,4 +180,16 @@ public class PacienteDao {
 		return aux;
 	}
 	
+	public void exibirFilas(TelaPrincipal tp) {
+		int p1 = filaP1.tamanhoFila();
+		tp.getTmedico().getLblFila1().setText(Integer.toString(p1));
+		int p2 = filaP2.tamanhoFila();
+		tp.getTmedico().getLblFila1().setText(Integer.toString(p2));
+		int p3 = filaP3.tamanhoFila();
+		tp.getTmedico().getLblFila1().setText(Integer.toString(p3));
+		int p4 = filaP4.tamanhoFila();
+		tp.getTmedico().getLblFila1().setText(Integer.toString(p4));
+		int p5 = filaP5.tamanhoFila();
+		tp.getTmedico().getLblFila1().setText(Integer.toString(p5));
+	}
 }
