@@ -101,10 +101,8 @@ public class PacienteDao {
 	
 	// Aloca o paciente na fila de prioridade correta
 	public boolean realizaTriagem(TelaPrincipal tp) {
-			
-		Atendimento aux = new Atendimento();
 		
-		aux = filaPac.removerAtendimento();
+		Atendimento aux = filaPac.removerAtendimento();
 			
 		if(tp.getTtriagem().getCheckBoxEntubado().isSelected() || tp.getTtriagem().getCheckBoxApneia().isSelected()
 				|| tp.getTtriagem().getCheckBoxSemPulso().isSelected() || tp.getTtriagem().getCheckBoxSemReacao().isSelected()) {
