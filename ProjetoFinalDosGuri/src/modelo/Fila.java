@@ -47,10 +47,19 @@ public class Fila {
 	// Remove e retorna o primeiro atendimento
 	public Atendimento removerAtendimento() {
 		
-		NoAtendimento aux = this.primeiro;
-		this.primeiro = this.primeiro.getProximo();
-		
-		return aux.getAt();
+		if(estaVazia()) {
+			return null;
+		} else {
+			
+			NoAtendimento aux = this.primeiro;
+			this.primeiro = this.primeiro.getProximo();
+			
+			if(!estaVazia()) {
+				this.primeiro.setProximo(null);
+			}
+			
+			return aux.getAt();
+		}
 		
 	}
 	
