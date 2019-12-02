@@ -213,7 +213,7 @@ public class PacienteDao {
 	}
 	
 	//Remove o paciente que está sendo atendido e coloca ele na lista de atendimentos acabados
-	public boolean terminarAtendimento(Atendimento at) {
+	public Atendimento terminarAtendimento(Atendimento at) {
 		
 		Atendimento aux = null;
 		
@@ -225,24 +225,29 @@ public class PacienteDao {
 							
 						} else {
 							aux = filaP5.removerAtendimento();
+							return aux;
 						}
 					} else {
 						aux = filaP4.removerAtendimento();
+						return aux;
 					}
 				} else {
 					aux = filaP3.removerAtendimento();
+					return aux;
 				}
 			} else {
 				aux = filaP2.removerAtendimento();
+				return aux;
 			}
 		}
 		else {
 			aux = filaP1.removerAtendimento();
+			return aux;
 		}
 		
 		listaEncerrados.addAtendimento(at);
 		
-		return true;
+		return null;
 		
 	}
 	
@@ -261,10 +266,22 @@ public class PacienteDao {
 		if(at != null) {
 			Date data = new Date();			
 			at.setDataHora(data);
-			System.out.println();
 			return true;
 		}
 		else
 			return false;
+	}
+	
+	public Atendimento retornarPrimeiroEncerrado() {
+		
+		Atendimento aux = listaEncerrados.retornarPrimeiro();
+		
+		System.out.println("Teste: " + aux.getP().getNome());
+		
+		if(aux != null) {
+			return aux;
+		} 
+		return null;
+		
 	}
 }

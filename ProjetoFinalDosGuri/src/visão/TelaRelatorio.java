@@ -8,51 +8,51 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import javax.swing.SwingConstants;
 
 public class TelaRelatorio extends JPanel {
-	private JTextField textFieldTempoEspera;
-	private JTextField textFieldTempoAtendimento;
+
+	private JLabel lblInfoTempoEspera;
+	private JLabel lblInfoTempoAtendimento;
 
 	public TelaRelatorio() {
-		
+
 		setLayout(new MigLayout("", "[][grow][][][][][]", "[][][][][][][]"));
-		
+
 		JLabel lblRelatorio = new JLabel("Relatórios");
 		lblRelatorio.setFont(new Font("Tahoma", Font.BOLD, 17));
 		add(lblRelatorio, "cell 0 0");
-		
+
 		JLabel labelTempoEspera = new JLabel("Tempo m\u00E9dio de espera:");
 		add(labelTempoEspera, "cell 1 1,alignx center");
-		
-		textFieldTempoEspera = new JTextField();
-		add(textFieldTempoEspera, "cell 1 2,growx");
-		textFieldTempoEspera.setColumns(10);
-		
+
+		lblInfoTempoEspera = new JLabel("");
+		lblInfoTempoEspera.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblInfoTempoEspera, "cell 1 2");
+
 		JLabel lblTempoAtendimento = new JLabel("Tempo m\u00E9dio de atendimento:");
 		add(lblTempoAtendimento, "cell 1 4,alignx center");
-		
-		textFieldTempoAtendimento = new JTextField();
-		add(textFieldTempoAtendimento, "cell 1 5,growx");
-		textFieldTempoAtendimento.setColumns(10);
+
+		lblInfoTempoAtendimento = new JLabel("");
+		lblInfoTempoAtendimento.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblInfoTempoAtendimento, "cell 1 5");
 
 	}
 
-	public JTextField getTextFieldTempoEspera() {
-		return textFieldTempoEspera;
+	public JLabel getLblInfoTempoEspera() {
+		return lblInfoTempoEspera;
 	}
 
-	public void setTextFieldTempoEspera(JTextField textFieldTempoEspera) {
-		this.textFieldTempoEspera = textFieldTempoEspera;
+	public void setLblInfoTempoEspera(JLabel lblInfoTempoEspera) {
+		this.lblInfoTempoEspera = lblInfoTempoEspera;
 	}
 
-	public JTextField getTextFieldTempoAtendimento() {
-		return textFieldTempoAtendimento;
+	public JLabel getLblInfoTempoAtendimento() {
+		return lblInfoTempoAtendimento;
 	}
 
-	public void setTextFieldTempoAtendimento(JTextField textFieldTempoAtendimento) {
-		this.textFieldTempoAtendimento = textFieldTempoAtendimento;
+	public void setLblInfoTempoAtendimento(JLabel lblInfoTempoAtendimento) {
+		this.lblInfoTempoAtendimento = lblInfoTempoAtendimento;
 	}
-	
-	
 
 }

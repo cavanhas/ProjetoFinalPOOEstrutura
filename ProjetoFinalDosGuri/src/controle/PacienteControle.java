@@ -18,6 +18,7 @@ public class PacienteControle implements ActionListener {
 	private Paciente pa;
 	private TelaPrincipal tp;
 	private PacienteDao dao;
+	private int i = 0, j = 0;
 
 	public PacienteControle(Paciente pa, TelaPrincipal tp) {
 		this.pa = pa;
@@ -228,9 +229,24 @@ public class PacienteControle implements ActionListener {
 			Atendimento aux = dao.listarPacientes();
 			
 			if(aux != null) {
+				
 				this.tp.getTandamento().getLblPacienteAtendido().setText(aux.getP().getNome());
 				this.tp.getTandamento().getLblHoraAtendimento().setText(aux.getDataHora().toString());
-				dao.terminarAtendimento(aux);
+				
+				Atendimento at = dao.terminarAtendimento(aux);
+				
+				// Realiza a media do tempo de espera
+				i++;
+				dao.atualizarHora();
+				Date data1 = new Date();
+				Date data2 = at.getDataHora();
+				long m1 = data1.getTime();
+				long m2 = data2.getTime();
+				long resultado = m1 - m2;
+				long media = resultado/(long)i;
+				this.tp.getTrelat().getLblInfoTempoEspera().setText(String.format("%03d:%02d:%02d", 
+						media/3600000, (media/60000) % 60, (media/1000) % 60));
+				
 				Atendimento aux2 = dao.listarPacientes();
 				if(aux2 != null) {
 					this.tp.getTmedico().getLblProximoPacDesc()
@@ -250,6 +266,24 @@ public class PacienteControle implements ActionListener {
 		//Encerra o atendimento
 		if (e.getActionCommand().equals("Encerrar atendimento")) {
 			
+			Atendimento at = dao.retornarPrimeiroEncerrado();
+
+			if(at != null) {
+				j++;
+				dao.atualizarHora();
+				Date data1 = new Date();
+				Date data2 = at.getDataHora();
+				long m1 = data1.getTime();
+				long m2 = data2.getTime();
+				long resultado = m1 - m2;
+				long media = resultado/(long)i;
+				this.tp.getTrelat().getLblInfoTempoAtendimento().setText(String.format("%03d:%02d:%02d", 
+						media/3600000, (media/60000) % 60, (media/1000) % 60));
+
+			} else {
+				System.out.println("Dhiemison");
+			}
+									
 		}
 
 	}
