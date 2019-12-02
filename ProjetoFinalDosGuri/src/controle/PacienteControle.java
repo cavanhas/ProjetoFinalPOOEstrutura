@@ -47,24 +47,28 @@ public class PacienteControle implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+		//troca para a tela de cadastro
 		if (e.getActionCommand().equals("menuCad")) {
 			this.tp.setContentPane(this.tp.getTcad());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
 
+		//troca para a tela de controle
 		if (e.getActionCommand().equals("menuCon")) {
 			this.tp.setContentPane(this.tp.getTcon());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
 
+		//troca para a tela de atendimento
 		if (e.getActionCommand().equals("menuAtend")) {
 			this.tp.setContentPane(this.tp.getTatend());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
 
+		//troca para a tela das filas de atendimento, assim como exibe o próximo paciente a ser atendido e o número de pacientes em cada fila
 		if (e.getActionCommand().equals("menuMedico")
 				|| e.getActionCommand().equals("Ir para as filas de atendimento")) {
 
@@ -73,8 +77,6 @@ public class PacienteControle implements ActionListener {
 			this.tp.repaint();
 
 			Atendimento proximo = dao.listarPacientes();
-
-			//!dao.atendimentoVazio()
 			
 			if (proximo != null) {
 				this.tp.getTmedico().getLblProximoPacDesc()
@@ -87,6 +89,7 @@ public class PacienteControle implements ActionListener {
 
 		}
 
+		//Realiza o cadastro de um paciente
 		if (e.getActionCommand().equals("Cadastrar")) {
 			String nomeaux = this.tp.getTcad().getTextFieldnome().getText();
 			String cpfaux = this.tp.getTcad().getTextFieldcpf().getText();
@@ -100,14 +103,17 @@ public class PacienteControle implements ActionListener {
 
 		}
 
+		//Fecha o programa
 		if (e.getActionCommand().equals("menuSair")) {
 			System.exit(0);
 		}
 
+		//Limpa os TextFields da tela de cadastro
 		if (e.getActionCommand().equals("Limpar")) {
 			this.tp.getTcad().limpar();
 		}
 
+		//Consulta se o cpf informado existe na lista de pacientes cadastrados
 		if (e.getActionCommand().equals("Consultar")) {
 
 			String cpf = this.tp.getTcon().getTextFieldCpfPaciente().getText();
@@ -122,6 +128,7 @@ public class PacienteControle implements ActionListener {
 			}
 		}
 
+		//Encaminha o paciente para o atendimento
 		if (e.getActionCommand().equals("Encaminhar para Atendimento")) {
 
 			String cpf = this.tp.getTcon().getTextFieldCpfPaciente().getText();
@@ -146,6 +153,7 @@ public class PacienteControle implements ActionListener {
 
 		}
 
+		//Chama uma senha
 		if (e.getActionCommand().equals("Chamar senha")) {
 			String senha = dao.chamarSenha();
 
@@ -156,6 +164,7 @@ public class PacienteControle implements ActionListener {
 			}
 		}
 
+		//Inicia o atendimento
 		if (e.getActionCommand().equals("Iniciar atendimento")) {
 			this.tp.setContentPane(this.tp.getTtriagem());
 			this.tp.revalidate();
@@ -164,6 +173,7 @@ public class PacienteControle implements ActionListener {
 			this.tp.getTatend().limpar();
 		}
 
+		//Redireciona para a tela de relatórios
 		if (e.getActionCommand().equals("menuRelatorio") || e.getActionCommand().equals("Relat\u00F3rios")) {
 			
 			this.tp.setContentPane(this.tp.getTrelat());
@@ -174,6 +184,7 @@ public class PacienteControle implements ActionListener {
 
 		}
 
+		//Conclui a triagem
 		if (e.getActionCommand().equals("Concluir Triagem")) {
 
 				
@@ -207,6 +218,7 @@ public class PacienteControle implements ActionListener {
 
 		}
 
+		//Chama o próximo paciente, de acordo com as filas de prioridade
 		if (e.getActionCommand().equals("Chamar paciente")) {
 			
 			this.tp.setContentPane(this.tp.getTandamento());
@@ -235,6 +247,7 @@ public class PacienteControle implements ActionListener {
 			}
 		}
 		
+		//Encerra o atendimento
 		if (e.getActionCommand().equals("Encerrar atendimento")) {
 			
 		}

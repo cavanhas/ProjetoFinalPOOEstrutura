@@ -133,10 +133,7 @@ public class PacienteDao {
 		} 	
 	}
 	
-	public boolean enfileirarPorPrioridade(int i) {
-		return false;
-	}
-	
+	//Retorna o próximo paciente a ser atendido
 	public Atendimento listarPacientes() {
 		
 		Atendimento aux = null;
@@ -172,6 +169,7 @@ public class PacienteDao {
 		return aux;
 	}
 	
+	//Retorna o número de pacientes em cada fila de prioridade
 	public void exibirFilas(TelaPrincipal tp) {
 		if(filaP1.estaVazia()) {
 			tp.getTmedico().getLblFila1().setText(Integer.toString(0));
@@ -214,10 +212,10 @@ public class PacienteDao {
 		}
 	}
 	
+	//Remove o paciente que está sendo atendido e coloca ele na lista de atendimentos acabados
 	public boolean terminarAtendimento(Atendimento at) {
 		
 		Atendimento aux = null;
-		Date data1 = null;
 		
 		if(filaP1.estaVazia() == true) {
 			if(filaP2.estaVazia() == true) {
@@ -240,7 +238,6 @@ public class PacienteDao {
 		}
 		else {
 			aux = filaP1.removerAtendimento();
-			data1 = new Date();
 		}
 		
 		listaEncerrados.addAtendimento(at);
@@ -249,6 +246,7 @@ public class PacienteDao {
 		
 	}
 	
+	//Verifica se a fila de atendimento está vazia
 	public boolean atendimentoVazio() {
 		if(filaPac.estaVazia() != true) {
 			return false;
@@ -256,6 +254,7 @@ public class PacienteDao {
 		return true;
 	}
 	
+	//Atualiza a hora dos objetos do tipo atendimento dentro da lista de atendimentos acabados para a data e hora em que seu atendimento foi finalizado
 	public boolean atualizarHora() {
 		Atendimento at = listaEncerrados.retornarPrimeiro();
 		
