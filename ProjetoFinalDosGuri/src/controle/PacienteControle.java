@@ -130,17 +130,19 @@ public class PacienteControle implements ActionListener {
 			Paciente p = dao.consultarPaciente(cpf);
 
 			if (p != null) {
-				Date data = new Date();
-				Date hora = new Date();
-				Atendimento at = new Atendimento(p, senha, data, hora);
+				Date dataHora = new Date();
+				Atendimento at = new Atendimento(p, senha, dataHora);
 				dao.filaAtendimento(at);
-				System.out.println("Aqui");
 			} else {
 				this.tp.getTcon().getLabelStatus().setText("Paciente não encontrado");
 			}
 
 			this.tp.getTcon().getTextFieldCpfPaciente().setText("");
 			this.tp.getTcon().getTextFieldSenha().setText("");
+			
+			this.tp.setContentPane(this.tp.getTatend());
+			this.tp.revalidate();
+			this.tp.repaint();
 
 		}
 
@@ -167,6 +169,8 @@ public class PacienteControle implements ActionListener {
 			this.tp.setContentPane(this.tp.getTrelat());
 			this.tp.revalidate();
 			this.tp.repaint();
+			
+			
 
 		}
 
@@ -213,27 +217,30 @@ public class PacienteControle implements ActionListener {
 			
 			if(aux != null) {
 				this.tp.getTandamento().getLblPacienteAtendido().setText(aux.getP().getNome());
-				this.tp.getTandamento().getLblHoraAtendimento().setText(aux.getHora().toString());
+				this.tp.getTandamento().getLblHoraAtendimento().setText(aux.getDataHora().toString());
 				dao.terminarAtendimento(aux);
 				Atendimento aux2 = dao.listarPacientes();
 				if(aux2 != null) {
 					this.tp.getTmedico().getLblProximoPacDesc()
 					.setText(aux2.getP().getNome() + "          Senha: " + aux2.getSenha());
 				} else {
-					System.out.println("Não há pacientes em espera");
+					this.tp.getTmedico().getLblProximoPacDesc()
+					.setText("Não há pacientes em espera");
 				}
-			} else {
-				System.out.println("Não há pacientes em espera");
+				
 			}
-			
+			else {
+				this.tp.getTmedico().getLblProximoPacDesc()
+				.setText("Não há pacientes em espera");
+			}
 		}
 		
 		if (e.getActionCommand().equals("Encerrar atendimento")) {
 			
-			
-			
 		}
 
 	}
+	
+	
 
 }

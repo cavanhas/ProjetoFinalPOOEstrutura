@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -62,10 +64,6 @@ public class PacienteDao {
 		
 		listaCad.addPaciente(pac);
 		
-		// Teste aqui
-		System.out.println("Lista de pacientes:");
-		listaCad.exibirLista();
-		
 		return true;
 		
 	}
@@ -85,19 +83,15 @@ public class PacienteDao {
 	public void filaAtendimento(Atendimento at) {
 		
 		DateFormat horaFormat = DateFormat.getTimeInstance(DateFormat.FULL);
-		DateFormat dataFormat = DateFormat.getDateInstance(DateFormat.FULL);
+		DateFormat dataFormat = DateFormat.getDateInstance(DateFormat.FULL); 
 		
+		System.out.println("\n");
 		System.out.println("Hora do atendimento: " + horaFormat.format(at.getDataHora()));
 		System.out.println("Data do atendimento: " + dataFormat.format(at.getDataHora()));	
 		System.out.println("Nome do paciente: " + at.getP().getNome());
 		
 		
 		filaPac.enfileira(at);	
-		
-		// Teste aqui
-		System.out.println("Fila de pacientes:");
-		filaPac.exibirFila();
-		System.out.println("Tamanho atual da fila de pacientes: " + filaPac.tamanhoFila());
 		
 	}
 	
@@ -135,53 +129,8 @@ public class PacienteDao {
 				case 5:
 					filaP5.enfileira(aux);
 					break;
-				default:
-					System.out.println("Ocorreu algum erro :(");
 			}
-		} else {
-			System.out.println("Não há pacientes na fila :)");
-		}
-		
-//		if(aux != null) {
-//			
-//			if(tp.getTtriagem().getCheckBoxEntubado().isSelected() || tp.getTtriagem().getCheckBoxApneia().isSelected()
-//					|| tp.getTtriagem().getCheckBoxSemPulso().isSelected() || tp.getTtriagem().getCheckBoxSemReacao().isSelected()) {
-//					filaP1.enfileira(aux);
-//					return 1;
-//			}
-//			else if(tp.getTtriagem().getCheckBoxRisco().isSelected() || tp.getTtriagem().getCheckBoxConfuso().isSelected()
-//					|| tp.getTtriagem().getCheckBoxDesorientado().isSelected() || tp.getTtriagem().getCheckBoxLetargico().isSelected()
-//					|| tp.getTtriagem().getCheckBoxDorAguda().isSelected()) {
-//				filaP2.enfileira(aux);
-//				return 1;
-//			}
-//			else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
-//				if(Integer.parseInt(tp.getTtriagem().getTextFieldFreqCardiaca().getText()) > 90
-//						|| Integer.parseInt(tp.getTtriagem().getTextFieldFreqRespiratoria().getText()) > 20
-//						|| (Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) < 36
-//								|| Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) > 38)
-//						|| (Integer.parseInt(tp.getTtriagem().getTextFieldOximetria().getText()) < 90)
-//						|| (Integer.parseInt(tp.getTtriagem().getTextFieldIndiceFluxoResp().getText()) < 200)) {
-//					filaP2.enfileira(aux);
-//					return 1;
-//				} else {
-//					filaP3.enfileira(aux);
-//					return 1;
-//				}
-//			}
-//			else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnNaoProc().isSelected()) {
-//				filaP4.enfileira(aux);
-//				return 1;
-//			}
-//			else if(tp.getTtriagem().getRadioButtonNao().isSelected()) {
-//				filaP5.enfileira(aux);
-//				return 1;
-//			}
-//		
-//		} 
-//			
-//		return 0;
-		
+		} 	
 	}
 	
 	public boolean enfileirarPorPrioridade(int i) {
@@ -268,6 +217,7 @@ public class PacienteDao {
 	public boolean terminarAtendimento(Atendimento at) {
 		
 		Atendimento aux = null;
+		Date data1 = null;
 		
 		if(filaP1.estaVazia() == true) {
 			if(filaP2.estaVazia() == true) {
@@ -290,12 +240,10 @@ public class PacienteDao {
 		}
 		else {
 			aux = filaP1.removerAtendimento();
+			data1 = new Date();
 		}
 		
 		listaEncerrados.addAtendimento(at);
-		
-		// Teste aqui
-		listaEncerrados.exibirLista();
 		
 		return true;
 		
@@ -308,6 +256,16 @@ public class PacienteDao {
 		return true;
 	}
 	
-	
-	
+	public boolean atualizarHora() {
+		Atendimento at = listaEncerrados.retornarPrimeiro();
+		
+		if(at != null) {
+			Date data = new Date();			
+			at.setDataHora(data);
+			System.out.println();
+			return true;
+		}
+		else
+			return false;
+	}
 }

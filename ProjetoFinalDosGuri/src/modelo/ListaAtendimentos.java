@@ -35,6 +35,14 @@ private NoAtendimento primeiro;
 		
 	}
 	
+	public Atendimento retornarPrimeiro() {
+		NoAtendimento aux = primeiro;
+		if(aux != null) {
+			return aux.getAt();
+		}		
+		return null;
+	}
+	
 	public void limpar() {
 		primeiro = null;
 	}
