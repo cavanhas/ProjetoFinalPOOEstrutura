@@ -103,7 +103,7 @@ public class PacienteDao {
 	}
 
 	// Aloca o paciente na fila de prioridade correta
-	public void realizaTriagem(int op) {
+	public boolean realizaTriagem(int op) {
 
 		Atendimento aux = filaPac.removerAtendimento();
 
@@ -112,21 +112,28 @@ public class PacienteDao {
 
 			case 1:
 				filaP1.enfileira(aux);
-				break;
+				return true;
+				//break;
 			case 2:
 				filaP2.enfileira(aux);
-				break;
+				return true;
+				//break;
 			case 3:
 				filaP3.enfileira(aux);
-				break;
+				return true;
+				//break;
 			case 4:
 				filaP4.enfileira(aux);
-				break;
+				return true;
+				//break;
 			case 5:
 				filaP5.enfileira(aux);
-				break;
+				return true;
+				//break;
 			}
 		}
+		
+		return false;
 	}
 
 	// Retorna o próximo paciente a ser atendido
@@ -204,7 +211,7 @@ public class PacienteDao {
 
 	// Remove o paciente que está sendo atendido e coloca ele na lista de
 	// atendimentos acabados
-	public boolean terminarAtendimento(Atendimento at) {
+	public boolean terminarAtendimento() {
 
 		Atendimento aux = null;
 

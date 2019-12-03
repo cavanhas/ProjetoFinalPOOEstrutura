@@ -200,6 +200,29 @@ public class TelaTriagem extends JPanel {
 		painelExpandido2.setVisible(false);
 	}
 	
+	public void limparCampos() {
+		
+		getCheckBoxApneia().setSelected(false);
+		getCheckBoxConfuso().setSelected(false);
+		getCheckBoxDesorientado().setSelected(false);
+		getCheckBoxDorAguda().setSelected(false);
+		getCheckBoxEntubado().setSelected(false);
+		getCheckBoxLetargico().setSelected(false);
+		getCheckBoxRisco().setSelected(false);
+		getCheckBoxSemPulso().setSelected(false);
+		getCheckBoxSemReacao().setSelected(false);
+		getRadioButtonSim().setSelected(false);
+		getRadioButtonNao().setSelected(false);
+		getRadioBtnSimProc().setSelected(false);
+		getRadioBtnNaoProc().setSelected(false);
+		getTextFieldFreqCardiaca().setText("");
+		getTextFieldFreqRespiratoria().setText("");
+		getTextFieldIndiceFluxoResp().setText("");
+		getTextFieldOximetria().setText("");
+		getTextFieldTempCorporal().setText("");
+		
+	}
+	
 	public JRadioButton getRadioBtnSimProc() {
 		return radioButtonSimProc;
 	}

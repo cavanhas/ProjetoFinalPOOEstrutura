@@ -19,6 +19,7 @@ public class PacienteControle implements ActionListener {
 	private TelaPrincipal tp;
 	private PacienteDao dao;
 	private int i = 0, j = 0;
+	private long mediaEsp = 0, mediaAt = 0;
 
 	public PacienteControle(Paciente pa, TelaPrincipal tp) {
 		this.pa = pa;
@@ -186,17 +187,25 @@ public class PacienteControle implements ActionListener {
 
 		// Conclui a triagem
 		if (e.getActionCommand().equals("Concluir Triagem")) {
+			
+			boolean retorno;
 
 			if (tp.getTtriagem().getCheckBoxEntubado().isSelected() || tp.getTtriagem().getCheckBoxApneia().isSelected()
 					|| tp.getTtriagem().getCheckBoxSemPulso().isSelected()
 					|| tp.getTtriagem().getCheckBoxSemReacao().isSelected()) {
-				dao.realizaTriagem(1);
+				retorno = dao.realizaTriagem(1);
+				if(retorno) {
+					this.tp.getTtriagem().limparCampos();
+				}
 			} else if (tp.getTtriagem().getCheckBoxRisco().isSelected()
 					|| tp.getTtriagem().getCheckBoxConfuso().isSelected()
 					|| tp.getTtriagem().getCheckBoxDesorientado().isSelected()
 					|| tp.getTtriagem().getCheckBoxLetargico().isSelected()
 					|| tp.getTtriagem().getCheckBoxDorAguda().isSelected()) {
-				dao.realizaTriagem(2);
+				retorno = dao.realizaTriagem(2);
+				if(retorno) {
+					this.tp.getTtriagem().limparCampos();
+				}
 			} else if (tp.getTtriagem().getRadioButtonSim().isSelected()
 					&& tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
 				if (Integer.parseInt(tp.getTtriagem().getTextFieldFreqCardiaca().getText()) > 90
@@ -205,15 +214,27 @@ public class PacienteControle implements ActionListener {
 								|| Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) > 38)
 						|| (Integer.parseInt(tp.getTtriagem().getTextFieldOximetria().getText()) < 90)
 						|| (Integer.parseInt(tp.getTtriagem().getTextFieldIndiceFluxoResp().getText()) < 200)) {
-					dao.realizaTriagem(2);
+					retorno = dao.realizaTriagem(2);
+					if(retorno) {
+						this.tp.getTtriagem().limparCampos();
+					}
 				} else {
-					dao.realizaTriagem(3);
+					retorno = dao.realizaTriagem(3);
+					if(retorno) {
+						this.tp.getTtriagem().limparCampos();
+					}
 				}
 			} else if (tp.getTtriagem().getRadioButtonSim().isSelected()
 					&& tp.getTtriagem().getRadioBtnNaoProc().isSelected()) {
-				dao.realizaTriagem(4);
+				retorno = dao.realizaTriagem(4);
+				if(retorno) {
+					this.tp.getTtriagem().limparCampos();
+				}
 			} else if (tp.getTtriagem().getRadioButtonNao().isSelected()) {
-				dao.realizaTriagem(5);
+				retorno = dao.realizaTriagem(5);
+				if(retorno) {
+					this.tp.getTtriagem().limparCampos();
+				}
 			}
 
 		}
@@ -232,20 +253,21 @@ public class PacienteControle implements ActionListener {
 				this.tp.getTandamento().getLblPacienteAtendido().setText(aux.getP().getNome());
 				this.tp.getTandamento().getLblHoraAtendimento().setText(aux.getDataHora().toString());
 
-				boolean retorno = dao.terminarAtendimento(aux);
+				Date data2 = aux.getDataHora();
+				boolean retorno = dao.terminarAtendimento();
 
-				// Realiza a media do tempo de esper.
+				// Realiza a media do tempo de espera
 				if(retorno) {
 					i++;
 					dao.atualizarHora();
 					Date data1 = new Date();
-					Date data2 = aux.getDataHora();
+					//Date data2 = aux.getDataHora();
 					long m1 = data1.getTime();
 					long m2 = data2.getTime();
 					long resultado = m1 - m2;
-					long media = resultado / (long) i;
+					mediaEsp = (mediaEsp + resultado) / i;
 					this.tp.getTrelat().getLblInfoTempoEspera().setText(
-							String.format("%03d:%02d:%02d", media / 3600000, (media / 60000) % 60, (media / 1000) % 60));
+							String.format("%03d:%02d:%02d", mediaEsp / 3600000, (mediaEsp / 60000) % 60, (mediaEsp / 1000) % 60));
 
 				} else {
 					System.out.println("Deu ruim pai");
@@ -269,17 +291,19 @@ public class PacienteControle implements ActionListener {
 
 			Atendimento at = dao.retornarPrimeiroEncerrado();
 
-//			j++;
-//			dao.atualizarHora();
-//			Date data1 = new Date();
-//			Date data2 = at.getDataHora();
-//			long m1 = data1.getTime();
-//			long m2 = data2.getTime();
-//			long resultado = m1 - m2;
-//			long media = resultado / (long) i;
-//			this.tp.getTrelat().getLblInfoTempoAtendimento().setText(
-//					String.format("%03d:%02d:%02d", media / 3600000, (media / 60000) % 60, (media / 1000) % 60));
-
+			if(at != null) {
+				j++;
+				//dao.atualizarHora();
+				Date data1 = new Date();
+				Date data2 = at.getDataHora();
+				long m1 = data1.getTime();
+				long m2 = data2.getTime();
+				long resultado = m1 - m2;
+				mediaAt = (mediaAt + resultado) / j;
+				this.tp.getTrelat().getLblInfoTempoAtendimento().setText(
+						String.format("%03d:%02d:%02d", mediaAt / 3600000, (mediaAt / 60000) % 60, (mediaAt / 1000) % 60));
+			}
+			
 		}
 
 	}
