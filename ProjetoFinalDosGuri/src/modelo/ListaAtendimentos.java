@@ -2,7 +2,7 @@ package modelo;
 
 public class ListaAtendimentos {
 	
-private NoAtendimento primeiro;
+	private NoAtendimento primeiro;
 	
 	public ListaAtendimentos() {
 		// TODO Auto-generated constructor stub
@@ -36,7 +36,7 @@ private NoAtendimento primeiro;
 	}
 	
 	public Atendimento retornarPrimeiro() {
-		NoAtendimento aux = primeiro;
+		NoAtendimento aux = this.primeiro;
 		if(aux != null) {
 			return aux.getAt();
 		}		

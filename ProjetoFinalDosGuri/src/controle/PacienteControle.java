@@ -48,28 +48,29 @@ public class PacienteControle implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		//troca para a tela de cadastro
+		// troca para a tela de cadastro
 		if (e.getActionCommand().equals("menuCad")) {
 			this.tp.setContentPane(this.tp.getTcad());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
 
-		//troca para a tela de controle
+		// troca para a tela de controle
 		if (e.getActionCommand().equals("menuCon")) {
 			this.tp.setContentPane(this.tp.getTcon());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
 
-		//troca para a tela de atendimento
+		// troca para a tela de atendimento
 		if (e.getActionCommand().equals("menuAtend")) {
 			this.tp.setContentPane(this.tp.getTatend());
 			this.tp.revalidate();
 			this.tp.repaint();
 		}
 
-		//troca para a tela das filas de atendimento, assim como exibe o próximo paciente a ser atendido e o número de pacientes em cada fila
+		// troca para a tela das filas de atendimento, assim como exibe o próximo
+		// paciente a ser atendido e o número de pacientes em cada fila
 		if (e.getActionCommand().equals("menuMedico")
 				|| e.getActionCommand().equals("Ir para as filas de atendimento")) {
 
@@ -78,7 +79,7 @@ public class PacienteControle implements ActionListener {
 			this.tp.repaint();
 
 			Atendimento proximo = dao.listarPacientes();
-			
+
 			if (proximo != null) {
 				this.tp.getTmedico().getLblProximoPacDesc()
 						.setText(proximo.getP().getNome() + "          Senha: " + proximo.getSenha());
@@ -90,7 +91,7 @@ public class PacienteControle implements ActionListener {
 
 		}
 
-		//Realiza o cadastro de um paciente
+		// Realiza o cadastro de um paciente
 		if (e.getActionCommand().equals("Cadastrar")) {
 			String nomeaux = this.tp.getTcad().getTextFieldnome().getText();
 			String cpfaux = this.tp.getTcad().getTextFieldcpf().getText();
@@ -104,17 +105,17 @@ public class PacienteControle implements ActionListener {
 
 		}
 
-		//Fecha o programa
+		// Fecha o programa
 		if (e.getActionCommand().equals("menuSair")) {
 			System.exit(0);
 		}
 
-		//Limpa os TextFields da tela de cadastro
+		// Limpa os TextFields da tela de cadastro
 		if (e.getActionCommand().equals("Limpar")) {
 			this.tp.getTcad().limpar();
 		}
 
-		//Consulta se o cpf informado existe na lista de pacientes cadastrados
+		// Consulta se o cpf informado existe na lista de pacientes cadastrados
 		if (e.getActionCommand().equals("Consultar")) {
 
 			String cpf = this.tp.getTcon().getTextFieldCpfPaciente().getText();
@@ -129,7 +130,7 @@ public class PacienteControle implements ActionListener {
 			}
 		}
 
-		//Encaminha o paciente para o atendimento
+		// Encaminha o paciente para o atendimento
 		if (e.getActionCommand().equals("Encaminhar para Atendimento")) {
 
 			String cpf = this.tp.getTcon().getTextFieldCpfPaciente().getText();
@@ -147,14 +148,14 @@ public class PacienteControle implements ActionListener {
 
 			this.tp.getTcon().getTextFieldCpfPaciente().setText("");
 			this.tp.getTcon().getTextFieldSenha().setText("");
-			
+
 			this.tp.setContentPane(this.tp.getTatend());
 			this.tp.revalidate();
 			this.tp.repaint();
 
 		}
 
-		//Chama uma senha
+		// Chama uma senha
 		if (e.getActionCommand().equals("Chamar senha")) {
 			String senha = dao.chamarSenha();
 
@@ -165,7 +166,7 @@ public class PacienteControle implements ActionListener {
 			}
 		}
 
-		//Inicia o atendimento
+		// Inicia o atendimento
 		if (e.getActionCommand().equals("Iniciar atendimento")) {
 			this.tp.setContentPane(this.tp.getTtriagem());
 			this.tp.revalidate();
@@ -174,120 +175,113 @@ public class PacienteControle implements ActionListener {
 			this.tp.getTatend().limpar();
 		}
 
-		//Redireciona para a tela de relatórios
+		// Redireciona para a tela de relatórios
 		if (e.getActionCommand().equals("menuRelatorio") || e.getActionCommand().equals("Relat\u00F3rios")) {
-			
+
 			this.tp.setContentPane(this.tp.getTrelat());
 			this.tp.revalidate();
 			this.tp.repaint();
-			
-			
 
 		}
 
-		//Conclui a triagem
+		// Conclui a triagem
 		if (e.getActionCommand().equals("Concluir Triagem")) {
 
-				
-			if(tp.getTtriagem().getCheckBoxEntubado().isSelected() || tp.getTtriagem().getCheckBoxApneia().isSelected()
-					|| tp.getTtriagem().getCheckBoxSemPulso().isSelected() || tp.getTtriagem().getCheckBoxSemReacao().isSelected()) {
-					dao.realizaTriagem(1);
-			}
-			else if(tp.getTtriagem().getCheckBoxRisco().isSelected() || tp.getTtriagem().getCheckBoxConfuso().isSelected()
-					|| tp.getTtriagem().getCheckBoxDesorientado().isSelected() || tp.getTtriagem().getCheckBoxLetargico().isSelected()
+			if (tp.getTtriagem().getCheckBoxEntubado().isSelected() || tp.getTtriagem().getCheckBoxApneia().isSelected()
+					|| tp.getTtriagem().getCheckBoxSemPulso().isSelected()
+					|| tp.getTtriagem().getCheckBoxSemReacao().isSelected()) {
+				dao.realizaTriagem(1);
+			} else if (tp.getTtriagem().getCheckBoxRisco().isSelected()
+					|| tp.getTtriagem().getCheckBoxConfuso().isSelected()
+					|| tp.getTtriagem().getCheckBoxDesorientado().isSelected()
+					|| tp.getTtriagem().getCheckBoxLetargico().isSelected()
 					|| tp.getTtriagem().getCheckBoxDorAguda().isSelected()) {
-					dao.realizaTriagem(2);
-			}
-			else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
-				if(Integer.parseInt(tp.getTtriagem().getTextFieldFreqCardiaca().getText()) > 90
+				dao.realizaTriagem(2);
+			} else if (tp.getTtriagem().getRadioButtonSim().isSelected()
+					&& tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
+				if (Integer.parseInt(tp.getTtriagem().getTextFieldFreqCardiaca().getText()) > 90
 						|| Integer.parseInt(tp.getTtriagem().getTextFieldFreqRespiratoria().getText()) > 20
 						|| (Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) < 36
 								|| Integer.parseInt(tp.getTtriagem().getTextFieldTempCorporal().getText()) > 38)
 						|| (Integer.parseInt(tp.getTtriagem().getTextFieldOximetria().getText()) < 90)
 						|| (Integer.parseInt(tp.getTtriagem().getTextFieldIndiceFluxoResp().getText()) < 200)) {
-						dao.realizaTriagem(2);
+					dao.realizaTriagem(2);
 				} else {
 					dao.realizaTriagem(3);
 				}
-			}
-			else if(tp.getTtriagem().getRadioButtonSim().isSelected() && tp.getTtriagem().getRadioBtnNaoProc().isSelected()) {
+			} else if (tp.getTtriagem().getRadioButtonSim().isSelected()
+					&& tp.getTtriagem().getRadioBtnNaoProc().isSelected()) {
 				dao.realizaTriagem(4);
-			}
-			else if(tp.getTtriagem().getRadioButtonNao().isSelected()) {
+			} else if (tp.getTtriagem().getRadioButtonNao().isSelected()) {
 				dao.realizaTriagem(5);
 			}
 
 		}
 
-		//Chama o próximo paciente, de acordo com as filas de prioridade
+		// Chama o próximo paciente, de acordo com as filas de prioridade
 		if (e.getActionCommand().equals("Chamar paciente")) {
-			
+
 			this.tp.setContentPane(this.tp.getTandamento());
 			this.tp.revalidate();
 			this.tp.repaint();
-			
+
 			Atendimento aux = dao.listarPacientes();
-			
-			if(aux != null) {
-				
+
+			if (aux != null) {
+
 				this.tp.getTandamento().getLblPacienteAtendido().setText(aux.getP().getNome());
 				this.tp.getTandamento().getLblHoraAtendimento().setText(aux.getDataHora().toString());
-				
-				Atendimento at = dao.terminarAtendimento(aux);
-				
+
+				boolean retorno = dao.terminarAtendimento(aux);
+
 				// Realiza a media do tempo de espera
-				i++;
-				dao.atualizarHora();
-				Date data1 = new Date();
-				Date data2 = at.getDataHora();
-				long m1 = data1.getTime();
-				long m2 = data2.getTime();
-				long resultado = m1 - m2;
-				long media = resultado/(long)i;
-				this.tp.getTrelat().getLblInfoTempoEspera().setText(String.format("%03d:%02d:%02d", 
-						media/3600000, (media/60000) % 60, (media/1000) % 60));
-				
-				Atendimento aux2 = dao.listarPacientes();
-				if(aux2 != null) {
-					this.tp.getTmedico().getLblProximoPacDesc()
-					.setText(aux2.getP().getNome() + "          Senha: " + aux2.getSenha());
+				if(retorno) {
+					i++;
+					dao.atualizarHora();
+					Date data1 = new Date();
+					Date data2 = aux.getDataHora();
+					long m1 = data1.getTime();
+					long m2 = data2.getTime();
+					long resultado = m1 - m2;
+					long media = resultado / (long) i;
+					this.tp.getTrelat().getLblInfoTempoEspera().setText(
+							String.format("%03d:%02d:%02d", media / 3600000, (media / 60000) % 60, (media / 1000) % 60));
+
 				} else {
-					this.tp.getTmedico().getLblProximoPacDesc()
-					.setText("Não há pacientes em espera");
+					System.out.println("Deu ruim pai");
 				}
 				
-			}
-			else {
-				this.tp.getTmedico().getLblProximoPacDesc()
-				.setText("Não há pacientes em espera");
-			}
-		}
-		
-		//Encerra o atendimento
-		if (e.getActionCommand().equals("Encerrar atendimento")) {
-			
-			Atendimento at = dao.retornarPrimeiroEncerrado();
-
-			if(at != null) {
-				j++;
-				dao.atualizarHora();
-				Date data1 = new Date();
-				Date data2 = at.getDataHora();
-				long m1 = data1.getTime();
-				long m2 = data2.getTime();
-				long resultado = m1 - m2;
-				long media = resultado/(long)i;
-				this.tp.getTrelat().getLblInfoTempoAtendimento().setText(String.format("%03d:%02d:%02d", 
-						media/3600000, (media/60000) % 60, (media/1000) % 60));
+				Atendimento aux2 = dao.listarPacientes();
+				if (aux2 != null) {
+					this.tp.getTmedico().getLblProximoPacDesc()
+							.setText(aux2.getP().getNome() + "          Senha: " + aux2.getSenha());
+				} else {
+					this.tp.getTmedico().getLblProximoPacDesc().setText("Não há pacientes em espera");
+				}
 
 			} else {
-				System.out.println("Dhiemison");
+				this.tp.getTmedico().getLblProximoPacDesc().setText("Não há pacientes em espera");
 			}
-									
+		}
+
+		// Encerra o atendimento
+		if (e.getActionCommand().equals("Encerrar atendimento")) {
+
+			Atendimento at = dao.retornarPrimeiroEncerrado();
+
+//			j++;
+//			dao.atualizarHora();
+//			Date data1 = new Date();
+//			Date data2 = at.getDataHora();
+//			long m1 = data1.getTime();
+//			long m2 = data2.getTime();
+//			long resultado = m1 - m2;
+//			long media = resultado / (long) i;
+//			this.tp.getTrelat().getLblInfoTempoAtendimento().setText(
+//					String.format("%03d:%02d:%02d", media / 3600000, (media / 60000) % 60, (media / 1000) % 60));
+
 		}
 
 	}
-	
-	
 
 }
