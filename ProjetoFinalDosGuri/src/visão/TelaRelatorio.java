@@ -54,5 +54,5 @@ public class TelaRelatorio extends JPanel {
 	public void setLblInfoTempoAtendimento(JLabel lblInfoTempoAtendimento) {
 		this.lblInfoTempoAtendimento = lblInfoTempoAtendimento;
 	}
-
+//
 }

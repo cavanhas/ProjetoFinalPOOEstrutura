@@ -234,7 +234,7 @@ public class PacienteControle implements ActionListener {
 
 				boolean retorno = dao.terminarAtendimento(aux);
 
-				// Realiza a media do tempo de esper
+				// Realiza a media do tempo de esper.
 				if(retorno) {
 					i++;
 					dao.atualizarHora();

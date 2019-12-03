@@ -244,7 +244,7 @@ public class PacienteDao {
 
 	}
 
-	// Verifica se a fila de atendimento está vazia
+	// Verifica se a fila de atendimento está vazia.
 	public boolean atendimentoVazio() {
 		if (filaPac.estaVazia() != true) {
 			return false;
