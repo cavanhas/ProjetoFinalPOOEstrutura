@@ -46,6 +46,10 @@ public class TelaTriagem extends JPanel {
 	private JButton btnIrParaFila;
 	private JRadioButton radioButtonSimProc;
 	private JRadioButton radioButtonNaoProc;
+	private ButtonGroup bGroup;
+	private ButtonGroup btnGroupProc;
+	private JLabel lblAviso;
+	private JButton btnLimpar;
 
 	public TelaTriagem() {
 		
@@ -53,7 +57,7 @@ public class TelaTriagem extends JPanel {
 		
 		JLabel lblTriagem = new JLabel("Triagem");
 		lblTriagem.setFont(new Font("Tahoma", Font.BOLD, 20));
-		add(lblTriagem, "cell 0 0");
+		add(lblTriagem, "flowx,cell 0 0");
 		
 		JLabel lblInfo1 = new JLabel("Preencha os campos de acordo com a situa\u00E7\u00E3o do paciente");
 		add(lblInfo1, "cell 0 1");
@@ -104,7 +108,7 @@ public class TelaTriagem extends JPanel {
 		});
 		add(radioButtonNao, "cell 0 5");
 		
-		ButtonGroup bGroup = new ButtonGroup();
+		bGroup = new ButtonGroup();
 		bGroup.add(radioButtonSim);
 		bGroup.add(radioButtonNao);
 		
@@ -173,14 +177,20 @@ public class TelaTriagem extends JPanel {
 		textFieldIndiceFluxoResp.setColumns(10);
 		
 		btnConcluirTriagem = new JButton("Concluir Triagem");
-		add(btnConcluirTriagem, "cell 0 7");
+		add(btnConcluirTriagem, "flowx,cell 0 7");
 		
 		btnIrParaFila = new JButton("Ir para as filas de atendimento");
 		add(btnIrParaFila, "cell 0 7");
 		
-		ButtonGroup btnGroupProc = new ButtonGroup();
+		btnGroupProc = new ButtonGroup();
 		btnGroupProc.add(radioButtonSimProc);
 		btnGroupProc.add(radioButtonNaoProc);
+		
+		lblAviso = new JLabel("");
+		add(lblAviso, "cell 0 0");
+		
+		btnLimpar = new JButton("Limpar");
+		add(btnLimpar, "cell 0 7");
 		
 	}
 	
@@ -211,18 +221,33 @@ public class TelaTriagem extends JPanel {
 		getCheckBoxRisco().setSelected(false);
 		getCheckBoxSemPulso().setSelected(false);
 		getCheckBoxSemReacao().setSelected(false);
-		getRadioButtonSim().setSelected(false);
-		getRadioButtonNao().setSelected(false);
-		getRadioBtnSimProc().setSelected(false);
-		getRadioBtnNaoProc().setSelected(false);
+		getbGroup().clearSelection();
+		getBtnGroupProc().clearSelection();
 		getTextFieldFreqCardiaca().setText("");
 		getTextFieldFreqRespiratoria().setText("");
 		getTextFieldIndiceFluxoResp().setText("");
 		getTextFieldOximetria().setText("");
 		getTextFieldTempCorporal().setText("");
+		getLblAviso().setText("");
 		
 	}
 	
+	public ButtonGroup getBtnGroupProc() {
+		return btnGroupProc;
+	}
+
+	public void setBtnGroupProc(ButtonGroup btnGroupProc) {
+		this.btnGroupProc = btnGroupProc;
+	}
+
+	public ButtonGroup getbGroup() {
+		return bGroup;
+	}
+
+	public void setbGroup(ButtonGroup bGroup) {
+		this.bGroup = bGroup;
+	}
+
 	public JRadioButton getRadioBtnSimProc() {
 		return radioButtonSimProc;
 	}
@@ -398,7 +423,21 @@ public class TelaTriagem extends JPanel {
 	public void setBtnIrParaFila(JButton btnIrParaFila) {
 		this.btnIrParaFila = btnIrParaFila;
 	}
-	
-	
+
+	public JLabel getLblAviso() {
+		return lblAviso;
+	}
+
+	public void setLblAviso(JLabel lblAviso) {
+		this.lblAviso = lblAviso;
+	}
+
+	public JButton getBtnLimpar() {
+		return btnLimpar;
+	}
+
+	public void setBtnLimpar(JButton btnLimpar) {
+		this.btnLimpar = btnLimpar;
+	}
 
 }

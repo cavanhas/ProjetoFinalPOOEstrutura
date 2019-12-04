@@ -42,6 +42,7 @@ public class PacienteControle implements ActionListener {
 		this.tp.getMntmSair().addActionListener(this);
 		this.tp.getMntmExibeRelat().addActionListener(this);
 		this.tp.getTandamento().getBtnEncerrarAtendimento().addActionListener(this);
+		this.tp.getTtriagem().getBtnLimpar().addActionListener(this);
 		dao = new PacienteDao();
 	}
 
@@ -158,6 +159,7 @@ public class PacienteControle implements ActionListener {
 
 		// Chama uma senha
 		if (e.getActionCommand().equals("Chamar senha")) {
+			
 			String senha = dao.chamarSenha();
 
 			if (senha != null) {
@@ -196,7 +198,9 @@ public class PacienteControle implements ActionListener {
 				retorno = dao.realizaTriagem(1);
 				if(retorno) {
 					this.tp.getTtriagem().limparCampos();
-				}
+					this.tp.getTtriagem().recolheFormulario();
+					this.tp.getTtriagem().recolheFormulario2();
+				} 
 			} else if (tp.getTtriagem().getCheckBoxRisco().isSelected()
 					|| tp.getTtriagem().getCheckBoxConfuso().isSelected()
 					|| tp.getTtriagem().getCheckBoxDesorientado().isSelected()
@@ -205,8 +209,10 @@ public class PacienteControle implements ActionListener {
 				retorno = dao.realizaTriagem(2);
 				if(retorno) {
 					this.tp.getTtriagem().limparCampos();
-				}
-			} else if (tp.getTtriagem().getRadioButtonSim().isSelected()
+					this.tp.getTtriagem().recolheFormulario();
+					this.tp.getTtriagem().recolheFormulario2();
+				} 
+			}  else if (tp.getTtriagem().getRadioButtonSim().isSelected()
 					&& tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
 				if (Integer.parseInt(tp.getTtriagem().getTextFieldFreqCardiaca().getText()) > 90
 						|| Integer.parseInt(tp.getTtriagem().getTextFieldFreqRespiratoria().getText()) > 20
@@ -217,11 +223,15 @@ public class PacienteControle implements ActionListener {
 					retorno = dao.realizaTriagem(2);
 					if(retorno) {
 						this.tp.getTtriagem().limparCampos();
+						this.tp.getTtriagem().recolheFormulario();
+						this.tp.getTtriagem().recolheFormulario2();
 					}
 				} else {
 					retorno = dao.realizaTriagem(3);
 					if(retorno) {
 						this.tp.getTtriagem().limparCampos();
+						this.tp.getTtriagem().recolheFormulario();
+						this.tp.getTtriagem().recolheFormulario2();
 					}
 				}
 			} else if (tp.getTtriagem().getRadioButtonSim().isSelected()
@@ -229,11 +239,15 @@ public class PacienteControle implements ActionListener {
 				retorno = dao.realizaTriagem(4);
 				if(retorno) {
 					this.tp.getTtriagem().limparCampos();
+					this.tp.getTtriagem().recolheFormulario();
+					this.tp.getTtriagem().recolheFormulario2();
 				}
 			} else if (tp.getTtriagem().getRadioButtonNao().isSelected()) {
 				retorno = dao.realizaTriagem(5);
 				if(retorno) {
 					this.tp.getTtriagem().limparCampos();
+					this.tp.getTtriagem().recolheFormulario();
+					this.tp.getTtriagem().recolheFormulario2();
 				}
 			}
 
@@ -303,6 +317,12 @@ public class PacienteControle implements ActionListener {
 				this.tp.getTrelat().getLblInfoTempoAtendimento().setText(
 						String.format("%03d:%02d:%02d", mediaAt / 3600000, (mediaAt / 60000) % 60, (mediaAt / 1000) % 60));
 			}
+			
+		}
+		
+		if(e.getActionCommand().equals("Limpar")) {
+			
+			this.tp.getTtriagem().limparCampos();
 			
 		}
 

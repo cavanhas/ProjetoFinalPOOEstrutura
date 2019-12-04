@@ -21,7 +21,7 @@ public class TelaConsulta extends JPanel {
 	private JTextField textFieldSenha;
 	private JButton btnEncaminharParaAtendimento;
 	private JLabel labelStatus;
-
+	private int i = 0;
 	
 	public TelaConsulta() {
 		setLayout(new MigLayout("", "[][][][]", "[][][][][][][20.00][][]"));
@@ -57,31 +57,7 @@ public class TelaConsulta extends JPanel {
 	
 	public void mostrarSenha() {
 		
-		
-//		Random rand  = new Random();
-//		getTextFieldSenha().setText(Integer.toString(rand.nextInt()));
-		
-		// Gerando a senha de acordo com o número de linhas do arquivo de cadastro
-		
-		FileReader fr = null;
-		BufferedReader br = null;
-		int i = 1;
-		
-		try {
-			
-			fr = new FileReader("cadastro.txt");
-			br = new BufferedReader(fr);
-			
-			String linha = br.readLine();
-			
-			while((linha = br.readLine()) != null) {
-				linha = br.readLine();
-				i++;
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		i++;
 		
 		getTextFieldSenha().setText(Integer.toString(i));
 		
@@ -126,7 +102,5 @@ public class TelaConsulta extends JPanel {
 	public void setLabelStatus(JLabel labelStatus) {
 		this.labelStatus = labelStatus;
 	}
-	
-	
 	
 }

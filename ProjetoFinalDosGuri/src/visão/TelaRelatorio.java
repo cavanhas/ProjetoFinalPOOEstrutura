@@ -17,7 +17,7 @@ public class TelaRelatorio extends JPanel {
 
 	public TelaRelatorio() {
 
-		setLayout(new MigLayout("", "[][grow][][][][][]", "[][][][][][][]"));
+		setLayout(new MigLayout("", "[][][]", "[][][][][][][]"));
 
 		JLabel lblRelatorio = new JLabel("Relatórios");
 		lblRelatorio.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -28,14 +28,14 @@ public class TelaRelatorio extends JPanel {
 
 		lblInfoTempoEspera = new JLabel("");
 		lblInfoTempoEspera.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblInfoTempoEspera, "cell 1 2");
+		add(lblInfoTempoEspera, "cell 1 2,alignx center");
 
 		JLabel lblTempoAtendimento = new JLabel("Tempo m\u00E9dio de atendimento:");
 		add(lblTempoAtendimento, "cell 1 4,alignx center");
 
 		lblInfoTempoAtendimento = new JLabel("");
 		lblInfoTempoAtendimento.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblInfoTempoAtendimento, "cell 1 5");
+		add(lblInfoTempoAtendimento, "cell 1 5,alignx center");
 
 	}
 
