@@ -46,10 +46,14 @@ public class TelaTriagem extends JPanel {
 	private JButton btnIrParaFila;
 	private JRadioButton radioButtonSimProc;
 	private JRadioButton radioButtonNaoProc;
+<<<<<<< HEAD
 	private ButtonGroup bGroup;
 	private ButtonGroup btnGroupProc;
 	private JLabel lblAviso;
 	private JButton btnLimpar;
+=======
+	private JLabel lblAviso;
+>>>>>>> branch 'master' of https://github.com/cavanhas/ProjetoFinalPOOEstrutura
 
 	public TelaTriagem() {
 		
@@ -187,10 +191,14 @@ public class TelaTriagem extends JPanel {
 		btnGroupProc.add(radioButtonNaoProc);
 		
 		lblAviso = new JLabel("");
+<<<<<<< HEAD
 		add(lblAviso, "cell 0 0");
 		
 		btnLimpar = new JButton("Limpar");
 		add(btnLimpar, "cell 0 7");
+=======
+		add(lblAviso, "cell 0 0,alignx right");
+>>>>>>> branch 'master' of https://github.com/cavanhas/ProjetoFinalPOOEstrutura
 		
 	}
 	
@@ -423,6 +431,7 @@ public class TelaTriagem extends JPanel {
 	public void setBtnIrParaFila(JButton btnIrParaFila) {
 		this.btnIrParaFila = btnIrParaFila;
 	}
+<<<<<<< HEAD
 
 	public JLabel getLblAviso() {
 		return lblAviso;
@@ -439,5 +448,17 @@ public class TelaTriagem extends JPanel {
 	public void setBtnLimpar(JButton btnLimpar) {
 		this.btnLimpar = btnLimpar;
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/cavanhas/ProjetoFinalPOOEstrutura
 
+	public JLabel getLblAviso() {
+		return lblAviso;
+	}
+
+	public void setLblAviso(JLabel lblAviso) {
+		this.lblAviso = lblAviso;
+	}
+	
+	
+	
 }
