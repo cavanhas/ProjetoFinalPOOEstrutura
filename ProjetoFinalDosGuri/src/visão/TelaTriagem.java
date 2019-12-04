@@ -46,6 +46,7 @@ public class TelaTriagem extends JPanel {
 	private JButton btnIrParaFila;
 	private JRadioButton radioButtonSimProc;
 	private JRadioButton radioButtonNaoProc;
+	private JLabel lblAviso;
 
 	public TelaTriagem() {
 		
@@ -173,7 +174,7 @@ public class TelaTriagem extends JPanel {
 		textFieldIndiceFluxoResp.setColumns(10);
 		
 		btnConcluirTriagem = new JButton("Concluir Triagem");
-		add(btnConcluirTriagem, "cell 0 7");
+		add(btnConcluirTriagem, "flowx,cell 0 7");
 		
 		btnIrParaFila = new JButton("Ir para as filas de atendimento");
 		add(btnIrParaFila, "cell 0 7");
@@ -181,6 +182,9 @@ public class TelaTriagem extends JPanel {
 		ButtonGroup btnGroupProc = new ButtonGroup();
 		btnGroupProc.add(radioButtonSimProc);
 		btnGroupProc.add(radioButtonNaoProc);
+		
+		lblAviso = new JLabel("");
+		add(lblAviso, "cell 0 0,alignx right");
 		
 	}
 	
@@ -398,7 +402,15 @@ public class TelaTriagem extends JPanel {
 	public void setBtnIrParaFila(JButton btnIrParaFila) {
 		this.btnIrParaFila = btnIrParaFila;
 	}
-	
-	
 
+	public JLabel getLblAviso() {
+		return lblAviso;
+	}
+
+	public void setLblAviso(JLabel lblAviso) {
+		this.lblAviso = lblAviso;
+	}
+	
+	
+	
 }

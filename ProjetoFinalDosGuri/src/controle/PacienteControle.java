@@ -18,8 +18,8 @@ public class PacienteControle implements ActionListener {
 	private Paciente pa;
 	private TelaPrincipal tp;
 	private PacienteDao dao;
-	private int i = 0, j = 0;
-	private long mediaEsp = 0, mediaAt = 0;
+	private int i = 0, j = 0, k = 0;
+	private long mediaEsp = 0, mediaAt = 0, mediaFila1 = 0;
 
 	public PacienteControle(Paciente pa, TelaPrincipal tp) {
 		this.pa = pa;
@@ -206,7 +206,14 @@ public class PacienteControle implements ActionListener {
 				if(retorno) {
 					this.tp.getTtriagem().limparCampos();
 				}
-			} else if (tp.getTtriagem().getRadioButtonSim().isSelected()
+			} else if(!tp.getTtriagem().getCheckBoxEntubado().isSelected() && !tp.getTtriagem().getCheckBoxApneia().isSelected()
+					&& !tp.getTtriagem().getCheckBoxSemPulso().isSelected() && !tp.getTtriagem().getCheckBoxSemReacao().isSelected()
+					&& !tp.getTtriagem().getCheckBoxRisco().isSelected() && !tp.getTtriagem().getCheckBoxConfuso().isSelected()
+					&& !tp.getTtriagem().getCheckBoxDesorientado().isSelected() && !tp.getTtriagem().getCheckBoxLetargico().isSelected()
+					&& !tp.getTtriagem().getCheckBoxDorAguda().isSelected()){
+				this.tp.getTtriagem().getLblAviso().setText("Erro!! Selecione pelo menos um item de estado de paciente!");
+				
+			} else if(tp.getTtriagem().getRadioButtonSim().isSelected()
 					&& tp.getTtriagem().getRadioBtnSimProc().isSelected()) {
 				if (Integer.parseInt(tp.getTtriagem().getTextFieldFreqCardiaca().getText()) > 90
 						|| Integer.parseInt(tp.getTtriagem().getTextFieldFreqRespiratoria().getText()) > 20
